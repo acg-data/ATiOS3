@@ -17,24 +17,37 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.082" green="0.392" blue="0.761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="Gew-OO-4HF" kind="relationship" relationship="viewControllers" id="hqO-c6-gQM"/>
                         <segue destination="Erb-u6-Fam" kind="relationship" relationship="viewControllers" id="Myv-mw-e7r"/>
                         <segue destination="mj9-v7-8Io" kind="relationship" relationship="viewControllers" id="hyj-Q8-XV1"/>
                         <segue destination="3sh-pZ-TEG" kind="relationship" relationship="viewControllers" id="XKB-If-G5z"/>
+                        <segue destination="MyTicketsScene" kind="relationship" relationship="viewControllers" id="myTicketsTab"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
+        <!--My Tickets-->
+        <scene sceneID="myTicketsSceneId" userLabel="My Tickets">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyTickets" id="MyTicketsScene" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Tickets" image="ticket" selectedImage="ticket.fill" id="myTicketsTabItem"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="myTicketsFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-351" y="754"/>
+        </scene>
         <!--More-->
         <scene sceneID="tQO-Z8-Qqw">
             <objects>
                 <viewControllerPlaceholder storyboardName="More" id="3sh-pZ-TEG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="nJS-mJ-GeM"/>
+                    <tabBarItem key="tabBarItem" title="More" id="nJS-mJ-GeM"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSX-gg-y5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +57,7 @@
         <scene sceneID="v4W-Ic-iDq">
             <objects>
                 <viewControllerPlaceholder storyboardName="Favorites" id="Erb-u6-Fam" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="J43-7S-Ozg"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="J43-7S-Ozg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LvE-za-atG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +67,7 @@
         <scene sceneID="gDQ-Ok-2pQ">
             <objects>
                 <viewControllerPlaceholder storyboardName="Sessions" id="Gew-OO-4HF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="jf1-hP-5ks"/>
+                    <tabBarItem key="tabBarItem" title="Browse" id="jf1-hP-5ks"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUn-wc-phh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "tkt-001",
+    "event_id": "evt-001",
+    "event_title": "Boston Red Sox vs New York Yankees",
+    "venue": "Fenway Park",
+    "date": "2025-04-15T19:10:00-0400",
+    "section": "Grandstand 12",
+    "row": "A",
+    "seat": "5",
+    "qr_code": "ACETICKET-TKT001-REDSOX-20250415",
+    "status": "purchased",
+    "price": 75.00
+  },
+  {
+    "id": "tkt-002", 
+    "event_id": "evt-003",
+    "event_title": "Boston Bruins vs Montreal Canadiens",
+    "venue": "TD Garden",
+    "date": "2025-03-20T19:00:00-0400",
+    "section": "Lower Bowl 5",
+    "row": "B",
+    "seat": "12",
+    "qr_code": "ACETICKET-TKT002-BRUINS-20250320",
+    "status": "purchased",
+    "price": 85.00
+  },
+  {
+    "id": "tkt-003",
+    "event_id": "evt-005",
+    "event_title": "Boston Celtics vs Los Angeles Lakers",
+    "venue": "TD Garden",
+    "date": "2025-03-10T19:30:00-0500",
+    "section": "Courtside",
+    "row": "VIP",
+    "seat": "1",
+    "qr_code": "ACETICKET-TKT003-CELTICS-20250310",
+    "status": "purchased",
+    "price": 250.00
+  },
+  {
+    "id": "tkt-004",
+    "event_id": "evt-011",
+    "event_title": "Taylor Swift - Eras Tour",
+    "venue": "Gillette Stadium",
+    "date": "2025-06-15T19:00:00-0400",
+    "section": "Field General Admission",
+    "row": "GA",
+    "seat": "12345",
+    "qr_code": "ACETICKET-TKT004-TAYLORSWIFT-20250615",
+    "status": "purchased",
+    "price": 120.00
+  },
+  {
+    "id": "tkt-005",
+    "event_id": "evt-014",
+    "event_title": "Hamilton - Broadway in Boston",
+    "venue": "Boston Opera House",
+    "date": "2025-03-01T19:30:00-0500",
+    "section": "Orchestra Center",
+    "row": "H",
+    "seat": "10",
+    "qr_code": "ACETICKET-TKT005-HAMILTON-20250301",
+    "status": "purchased",
+    "price": 180.00
+  }
+]

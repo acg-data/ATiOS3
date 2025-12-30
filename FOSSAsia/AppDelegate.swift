@@ -16,14 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        UITabBar.appearance().tintColor = Colors.mainRedColor
-        UINavigationBar.appearance().tintColor = Colors.creamTintColor
+        UITabBar.appearance().tintColor = Colors.mainBlueColor
+        UINavigationBar.appearance().tintColor = Colors.mainBlueColor
+        UINavigationBar.appearance().barTintColor = Colors.whiteColor
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: Colors.textPrimaryColor]
         UIApplication.shared.isStatusBarHidden = false
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .default
 
         UserDefaults.standard.register(defaults: [Constants.UserDefaultsKey.FilteredTrackIds: (1...Constants.numberOfTracks).toArray()])
-        // Set the Local Notification Delegate
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         IQKeyboardManager.sharedManager().enable = true

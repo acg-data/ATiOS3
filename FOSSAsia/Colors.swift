@@ -9,9 +9,16 @@
 import UIKit
 
 struct Colors {
-    static let mainRedColor = UIColor(hexString: "D90300")
-    static let creamTintColor = UIColor(hexString: "FEFAD5")
-    static let favoriteOrangeColor = UIColor(hexString: "F5A623")
-    static let highlightedBackgroundColor = UIColor(hexString: "FFF5F5")
-    static let statusBarOrangeColor = UIColor(hexString: "D30005")
+    static let mainBlueColor = UIColor(hexString: "1565C0")
+    static let lightBlueColor = UIColor(hexString: "E3F2FD")
+    static let whiteColor = UIColor(hexString: "FFFFFF")
+    static let darkGrayColor = UIColor(hexString: "212121")
+    static let mediumGrayColor = UIColor(hexString: "757575")
+    static let favoriteOrangeColor = UIColor(hexString: "FF6F00")
+    static let highlightedBackgroundColor = UIColor(hexString: "E3F2FD")
+    static let statusBarBlueColor = UIColor(hexString: "0D47A1")
+    static let separatorColor = UIColor(hexString: "E0E0E0")
+    static let textPrimaryColor = UIColor(hexString: "212121")
+    static let textSecondaryColor = UIColor(hexString: "757575")
+    static let creamTintColor = UIColor(hexString: "FFFFFF") // Using white for Ace Ticket branding
 }

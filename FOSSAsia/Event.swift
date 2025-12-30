@@ -10,63 +10,63 @@ import Foundation
 
 struct Event {
     enum Track: Int, CustomStringConvertible {
-        case openTechIOT = 1
-        case openTech, techKids1, techKids2, techKids3, hardwareIOT, devOps, webTech, python, bigOpenData, databases, isc, privSec, scienceHackDay, linux, design, exhibition, social
+        case mlb = 1
+        case nhl, nba, nfl, ncaa, concerts, theater, comedy, festivals, wrestling, mma, ufc, soccer, golf, tennis, racing
         var description: String {
             switch self {
-            case .techKids1: return "Tech Kids I"
-            case .techKids2: return "Tech Kids II"
-            case .techKids3: return "Tech Kids III"
-            case .openTechIOT: return "OpenTech and IOT"
-            case .openTech: return "OpenTech Workshops"
-            case .webTech: return "WebTech"
-            case .exhibition: return "Exhibition"
-            case .hardwareIOT: return "Hardware and IOT"
-            case .python: return "Python"
-            case .databases: return "Databases"
-            case .bigOpenData: return "Big Data/Open Data"
-            case .devOps: return "DevOps"
-            case .privSec: return "Privacy and Security"
-            case .isc: return "Internet, Society, Community"
-            case .scienceHackDay: return "Science Hack Day"
-            case .linux: return "Linux and MiniDebConf"
-            case .design: return "Design, VR, 3D"
-            case .social: return "Social Event"
+            case .mlb: return "MLB"
+            case .nhl: return "NHL"
+            case .nba: return "NBA"
+            case .nfl: return "NFL"
+            case .ncaa: return "NCAA"
+            case .concerts: return "Concerts"
+            case .theater: return "Theater"
+            case .comedy: return "Comedy"
+            case .festivals: return "Festivals"
+            case .wrestling: return "WWE"
+            case .mma: return "MMA"
+            case .ufc: return "UFC"
+            case .soccer: return "Soccer"
+            case .golf: return "Golf"
+            case .tennis: return "Tennis"
+            case .racing: return "Racing"
             }
         }
 
         func getTrackColor() -> UIColor {
             switch self {
-            case .techKids1, .techKids2, .techKids3:
-                return UIColor(hexString: "8E8E93")!
-            case .openTechIOT:
-                return UIColor(hexString: "FF4D4D")!
-            case .openTech:
-                return UIColor(hexString: "FF8E4C")!
-            case .webTech:
-                return UIColor(hexString: "FFCF4C")!
-            case .exhibition, .social:
-                return UIColor(hexString: "EAFF4C")!
-            case .hardwareIOT:
-                return UIColor(hexString: "B8FF4C")!
-            case .python:
-                return UIColor(hexString: "85FF4C")!
-            case .databases:
-                return UIColor(hexString: "50E3C2")!
-            case .bigOpenData:
-                return UIColor(hexString: "4CFFE7")!
-            case .devOps:
-                return UIColor(hexString: "4CDBFF")!
-            case .privSec:
-                return UIColor(hexString: "4CA9FF")!
-            case .isc:
-                return UIColor(hexString: "7C4CFF")!
-            case .scienceHackDay:
-                return UIColor(hexString: "9D4CFF")!
-            case .linux:
-                return UIColor(hexString: "ED4CFF")!
-            case .design:
-                return UIColor(hexString: "FF4CCC")!
+            case .mlb:
+                return UIColor(hexString: "1976D2")!
+            case .nhl:
+                return UIColor(hexString: "0D47A1")!
+            case .nba:
+                return UIColor(hexString: "C62828")!
+            case .nfl:
+                return UIColor(hexString: "1565C0")!
+            case .ncaa:
+                return UIColor(hexString: "2E7D32")!
+            case .concerts:
+                return UIColor(hexString: "6A1B9A")!
+            case .theater:
+                return UIColor(hexString: "AD1457")!
+            case .comedy:
+                return UIColor(hexString: "EF6C00")!
+            case .festivals:
+                return UIColor(hexString: "00897B")!
+            case .wrestling:
+                return UIColor(hexString: "424242")!
+            case .mma:
+                return UIColor(hexString: "9E9E9E")!
+            case .ufc:
+                return UIColor(hexString: "B71C1C")!
+            case .soccer:
+                return UIColor(hexString: "455A64")!
+            case .golf:
+                return UIColor(hexString: "33691E")!
+            case .tennis:
+                return UIColor(hexString: "F57F17")!
+            case .racing:
+                return UIColor(hexString: "D84315")!
             }
         }
     }

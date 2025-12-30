@@ -12,10 +12,10 @@ class FilterListViewController: UIViewController {
     fileprivate let kFilterCellReuseIdentifier = "FilterCell"
     @IBOutlet weak var filterTableView: UITableView!
 
-    override func viewDidLoad() {
+override func viewDidLoad() {
         super.viewDidLoad()
         filterTableView.dataSource = self
-        self.navigationController?.navigationBar.tintColor = Colors.mainRedColor
+        self.navigationController?.navigationBar.tintColor = Colors.mainBlueColor
     }
 
     @IBAction func doneButtonPressed(_ sender: AnyObject) {
@@ -28,9 +28,9 @@ extension FilterListViewController: UITableViewDataSource {
         return Constants.numberOfTracks
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Tracks"
+            return "Categories"
         }
         return ""
     }

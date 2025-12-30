@@ -10,10 +10,10 @@ import UIKit
 import SafariServices
 
 private struct DefaultURLs {
-    static let fossasia2018 = "https://2018.fossasia.org/"
-    static let fossaisaTwitter = "https://twitter.com/fossasia"
-    static let fossasiaItune = "https://itunes.apple.com/us/app/fossasia/id1089164461?ls=1&mt=8"
-    static let fossasiaGoogleGroups = "http://groups.google.com/group/fossasia"
+    static let aceTicketWebsite = "https://www.aceticket.com/"
+    static let aceTicketTwitter = "https://twitter.com/aceticket"
+    static let aceTicketFacebook = "https://facebook.com/aceticket"
+    static let aceTicketInstagram = "https://instagram.com/aceticket"
 }
 
 class MoreViewController: UITableViewController {
@@ -23,17 +23,18 @@ class MoreViewController: UITableViewController {
             return
         }
 
-        switch (indexPath as NSIndexPath).row {
+switch (indexPath as NSIndexPath).row {
         case 0:
-            self.present(self.createSVC(DefaultURLs.fossasia2018), animated: true, completion: nil)
+            self.present(self.createSVC(DefaultURLs.aceTicketWebsite), animated: true, completion: nil)
             break
         case 1:
-            self.present(self.createSVC(DefaultURLs.fossaisaTwitter), animated: true, completion: nil)
+            self.present(self.createSVC(DefaultURLs.aceTicketTwitter), animated: true, completion: nil)
             break
         case 2:
             let alertController = UIAlertController(title: Constants.appStoreAlertTitle, message: Constants.appStoreAlertMessage, preferredStyle: .alert)
             let openAction = UIAlertAction(title: Constants.okTitle, style: .default, handler: { (action) -> Void in
-                let itunesLink = DefaultURLs.fossasiaItune
+                // Note: Will update with actual Ace Ticket App Store link when available
+                let itunesLink = DefaultURLs.aceTicketFacebook
                 if let url = URL(string: itunesLink) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
@@ -49,7 +50,7 @@ class MoreViewController: UITableViewController {
 
             break
         case 3:
-            self.present(self.createSVC(DefaultURLs.fossasiaGoogleGroups), animated: true, completion: nil)
+            self.present(self.createSVC(DefaultURLs.aceTicketFacebook), animated: true, completion: nil)
             break
             
         case 5:

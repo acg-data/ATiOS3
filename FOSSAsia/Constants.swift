@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
 
-    static let numberOfTracks = 15
+    static let numberOfTracks = 16
     static let jsonFileExtension = ".json"
     static let localNotificationIdentifier = "LocalNotification"
     static let sessionsStoryboardName = "Sessions"
@@ -37,15 +37,16 @@ struct Constants {
 
     struct Url {
         static let registerUrl = "https://open-event-api-dev.herokuapp.com/v1/users"
-
         static let loginUrl = "https://open-event-api-dev.herokuapp.com/auth/session"
-
-
+        static let aceTicketAPI = "https://api.aceticket.com/v1"
+        static let eventsEndpoint = "https://api.aceticket.com/v1/events"
+        static let ticketsEndpoint = "https://api.aceticket.com/v1/tickets"
+        static let venuesEndpoint = "https://api.aceticket.com/v1/venues"
     }
 
     struct alertMessage {
-        static let logoutMessageTitle = "Do you want to Logout?"
-        static let logoutMessage = "Click Yes to Logout!"
+        static let logoutMessageTitle = "Do you want to Sign Out?"
+        static let logoutMessage = "Click Yes to Sign Out!"
         static let noTitle = "No"
         static let yesTitle = "Yes"
     }
@@ -59,11 +60,11 @@ struct Constants {
     }
 
     struct ResponseMessages {
-        static let InvalidParams = "Email ID / Password incorrect"
+        static let InvalidParams = "Email or Password incorrect"
         static let ServerError = "Problem connecting to server!"
-        static let successMessageSignup = "Successfully Signed Up"
-        static let successMessageLogin = "Successfully Logged In"
-        static let checkParameter = "Please Check Parameters Entered"
+        static let successMessageSignup = "Account created successfully"
+        static let successMessageLogin = "Successfully signed in"
+        static let checkParameter = "Please check your entries"
 
     }
 
@@ -82,10 +83,10 @@ struct Constants {
     }
 
     struct Location {
-        static let lattitude = 1.288424
-        static let longitude = 103.846694
-        static let spanCoordinate = 0.0002
-        static let annotationTitle = "FOSSASIA"
+        static let lattitude = 42.3601
+        static let longitude = -71.0589
+        static let spanCoordinate = 0.01
+        static let annotationTitle = "Ace Ticket"
     }
 
     struct SettingsManager {
@@ -99,8 +100,8 @@ struct Constants {
         static let navbarFave = "navbar_fave"
     }
     struct MoreViewController {
-        static let message = "I am using the Open Event iOS , for browsing information about the event visit https://fossasia.org/ "
-        static let subject = "Check out the Open Event iOS!"
+        static let message = "I am using Ace Ticket iOS app to find great seats for sports, concerts, and theater events. Check it out at https://www.aceticket.com/"
+        static let subject = "Check out Ace Ticket!"
         static let Title = "Subject"
     }
 }

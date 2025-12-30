@@ -46,21 +46,28 @@ class FavoritesScheduleViewController: EventsBaseViewController, SwipeToFavorite
 
 // MARK: - DZNEmptyDataSetSource Conformance
 extension FavoritesScheduleViewController {
-    internal func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        let text = "No Favorites Yet!"
+internal func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        let text = "No Favorites Yet!\nBrowse events to find your next experience!"
         let attributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18.0),
-            NSAttributedStringKey.foregroundColor: UIColor.darkGray]
+            NSAttributedStringKey.foregroundColor: UIColor(hexString: "212121")]
 
         return NSAttributedString.init(string: text, attributes: attributes)
     }
 
-    @objc(buttonImageForEmptyDataSet:forState:) internal func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
+@objc(buttonImageForEmptyDataSet:forState:) internal func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
         switch state {
         case UIControlState.highlighted:
             return UIImage(named: "browse_events_btn_selected")
         default:
             return UIImage(named: "browse_events_btn")
         }
+    }
+    
+    @objc(buttonTitleForEmptyDataSet:forState:) internal func buttonTitle(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> NSAttributedString? {
+        let text = "Browse Events"
+        let attributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16.0),
+            NSAttributedStringKey.foregroundColor: UIColor(hexString: "1565C0")]
+        return NSAttributedString(string: text, attributes: attributes)
     }
 }
 
