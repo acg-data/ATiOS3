@@ -11,7 +11,7 @@ import { useEventStore } from '../../stores';
 import { TRACKS } from '../../types';
 import { EventCard } from '../../components/events';
 import { EmptyState, LoadingSpinner, CategoryBadge } from '../../components/common';
-import { COLORS, SPACING, FONT_SIZES } from '../../utils/constants';
+import { COLORS, SPACING, FONT_SIZES, SHADOWS } from '../../utils/constants';
 
 const EventsListScreen: React.FC = () => {
   const {
@@ -23,38 +23,38 @@ const EventsListScreen: React.FC = () => {
     setFilters,
     loadFavorites
   } = useEventStore();
-  
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const [showFilters, setShowFilters] = useState(false);
-  
+
   useEffect(() => {
     fetchEvents();
     loadFavorites();
   }, []);
-  
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     setFilters({ searchQuery: query });
   };
-  
+
   const toggleCategory = (trackId: number) => {
     const newCategories = selectedCategories.includes(trackId)
       ? selectedCategories.filter(id => id !== trackId)
       : [...selectedCategories, trackId];
-    
+
     setSelectedCategories(newCategories);
     setFilters({ trackIds: newCategories.length > 0 ? newCategories : undefined });
   };
-  
+
   const clearFilters = () => {
     setSelectedCategories([]);
     setSearchQuery('');
     setFilters({});
   };
-  
+
   const hasFilters = searchQuery.length > 0 || selectedCategories.length > 0;
-  
+
   const renderCategoryItem = ({ item }: { item: typeof TRACKS[0] }) => (
     <CategoryBadge
       trackCode={item.id}
@@ -63,7 +63,7 @@ const EventsListScreen: React.FC = () => {
       size="small"
     />
   );
-  
+
   const renderEventItem = ({ item }: { item: typeof filteredEvents[0] }) => (
     <EventCard
       event={item}
@@ -74,7 +74,7 @@ const EventsListScreen: React.FC = () => {
       onFavoritePress={() => toggleFavorite(item.id)}
     />
   );
-  
+
   const renderSearchBar = () => (
     <View style={styles.searchContainer}>
       <View style={styles.searchBar}>
@@ -91,7 +91,7 @@ const EventsListScreen: React.FC = () => {
           </TouchableOpacity>
         )}
       </View>
-      
+
       <TouchableOpacity
         style={[
           styles.filterButton,
@@ -108,10 +108,10 @@ const EventsListScreen: React.FC = () => {
       </TouchableOpacity>
     </View>
   );
-  
+
   const renderFilters = () => {
     if (!showFilters) return null;
-    
+
     return (
       <View style={styles.filtersContainer}>
         <View style={styles.filterHeader}>
@@ -122,7 +122,7 @@ const EventsListScreen: React.FC = () => {
             </TouchableOpacity>
           )}
         </View>
-        
+
         <FlatList
           data={TRACKS}
           renderItem={renderCategoryItem}
@@ -134,12 +134,12 @@ const EventsListScreen: React.FC = () => {
       </View>
     );
   };
-  
+
   const renderContent = () => {
     if (isLoading) {
       return <LoadingSpinner />;
     }
-    
+
     if (filteredEvents.length === 0) {
       return (
         <EmptyState
@@ -154,7 +154,7 @@ const EventsListScreen: React.FC = () => {
         />
       );
     }
-    
+
     return (
       <FlatList
         data={filteredEvents}
@@ -166,7 +166,7 @@ const EventsListScreen: React.FC = () => {
       />
     );
   };
-  
+
   return (
     <View style={styles.container}>
       {renderSearchBar()}
@@ -178,85 +178,73 @@ const EventsListScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background
+    backgroundColor: '#F7F7F7' // Cleaner off-white
   },
   searchContainer: {
-    flexDirection: 'row',
-    padding: SPACING.md,
-    backgroundColor: COLORS.white,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.divider
+    paddingHorizontal: SPACING.md,
+    paddingTop: SPACING.md,
+    paddingBottom: SPACING.sm,
+    backgroundColor: 'transparent',
+    zIndex: 10
   },
   searchBar: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.surface,
-    borderRadius: 8,
+    backgroundColor: COLORS.white,
+    borderRadius: 12,
     paddingHorizontal: SPACING.md,
-    marginRight: SPACING.sm
+    height: 48,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.05)',
+    ...SHADOWS.small
   },
   searchInput: {
     flex: 1,
-    paddingVertical: SPACING.sm,
+    height: '100%',
     fontSize: FONT_SIZES.md,
-    color: COLORS.text
+    color: COLORS.text,
+    marginLeft: 8
   },
   clearButton: {
-    fontSize: FONT_SIZES.md,
+    fontSize: 18,
     color: COLORS.textSecondary,
     padding: 4
   },
-  filterButton: {
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
-    backgroundColor: COLORS.surface,
-    borderRadius: 8,
-    justifyContent: 'center'
-  },
-  filterButtonActive: {
-    backgroundColor: COLORS.primaryLight
-  },
-  filterButtonText: {
-    fontSize: FONT_SIZES.sm,
-    color: COLORS.textSecondary,
-    ...{
-      fontWeight: '500' as const
-    }
-  },
-  filterButtonTextActive: {
-    color: COLORS.primary
-  },
   filtersContainer: {
-    backgroundColor: COLORS.white,
-    paddingBottom: SPACING.md,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.divider
+    paddingBottom: SPACING.sm,
   },
   filterHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: SPACING.md,
     marginBottom: SPACING.sm
   },
   filterTitle: {
-    fontSize: FONT_SIZES.md,
-    color: COLORS.text,
-    ...{
-      fontWeight: '600' as const
-    }
+    display: 'none'
   },
   clearFiltersText: {
     fontSize: FONT_SIZES.sm,
-    color: COLORS.primary
+    color: COLORS.primary,
+    fontWeight: '600'
   },
   categoriesList: {
-    paddingHorizontal: SPACING.md
+    paddingHorizontal: SPACING.md,
+    paddingVertical: 4
   },
   eventsList: {
-    padding: SPACING.md
-  }
+    padding: SPACING.md,
+    paddingTop: SPACING.sm
+  },
+  filterButton: {
+    marginLeft: 8,
+    padding: 8
+  },
+  filterButtonText: {
+    display: 'none'
+  },
+  filterButtonActive: {},
+  filterButtonTextActive: {}
 });
 
 export default EventsListScreen;

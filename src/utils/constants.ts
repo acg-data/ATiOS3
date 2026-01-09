@@ -73,28 +73,43 @@ export const BORDER_RADIUS = {
   round: 9999
 };
 
+
 export const SHADOWS = {
   small: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.08, // Softer
     shadowRadius: 4,
     elevation: 2
   },
   medium: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 4
+    shadowOffset: { width: 0, height: 6 }, // Deeper offset
+    shadowOpacity: 0.12, // Softer opacity
+    shadowRadius: 12, // Larger radius for "float"
+    elevation: 5
   },
   large: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.15,
+    shadowRadius: 24,
+    elevation: 10
+  },
+  // New "Premium" glow effect
+  glow: {
+    shadowColor: '#3862FA',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
     elevation: 8
   }
+};
+
+export const GRADIENTS = {
+  primary: ['#3862FA', '#5C80FF'] as const,
+  dark: ['#1A1A1A', '#333333'] as const,
+  surface: ['#FFFFFF', '#F8F9FE'] as const,
 };
 
 export const API_CONFIG = {
@@ -119,3 +134,4 @@ export const APP_CONFIG = {
   supportEmail: 'support@aceticket.com',
   website: 'https://www.aceticket.com'
 };
+

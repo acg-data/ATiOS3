@@ -18,9 +18,9 @@ const CategoryBadge: React.FC<CategoryBadgeProps & TouchableOpacityProps> = ({
   ...props
 }) => {
   const track = TRACKS.find(t => t.id === trackCode);
-  
+
   if (!track) return null;
-  
+
   const getSizeStyles = () => {
     switch (size) {
       case 'small':
@@ -40,11 +40,11 @@ const CategoryBadge: React.FC<CategoryBadgeProps & TouchableOpacityProps> = ({
         };
     }
   };
-  
+
   const { badge, text } = getSizeStyles();
-  
+
   const Container = onPress ? TouchableOpacity : View;
-  
+
   return (
     <Container
       style={[
@@ -64,43 +64,52 @@ const CategoryBadge: React.FC<CategoryBadgeProps & TouchableOpacityProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  badgeSmall: {
-    paddingVertical: 4,
-    paddingHorizontal: 10,
-    borderRadius: 16,
-    marginRight: 8,
-    marginBottom: 8
-  },
-  badgeMedium: {
-    paddingVertical: 6,
-    paddingHorizontal: 14,
-    borderRadius: 20,
-    marginRight: 10,
-    marginBottom: 10
-  },
-  badgeLarge: {
-    paddingVertical: 8,
-    paddingHorizontal: 18,
-    borderRadius: 24,
-    marginRight: 12,
-    marginBottom: 12
-  },
-  selectedBadge: {
-    borderWidth: 0
-  },
-  textSmall: {
-    fontSize: 11,
-    fontWeight: '600' as const
-  },
-  textMedium: {
-    fontSize: 13,
-    fontWeight: '600' as const
-  },
-  textLarge: {
-    fontSize: 15,
-    fontWeight: '700' as const
-  }
+badgeSmall: {
+  paddingVertical: 6,
+    paddingHorizontal: 12,
+      borderRadius: 999, // Pill shape
+        marginRight: 8,
+          marginBottom: 8,
+            borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.05)'
+},
+badgeMedium: {
+  paddingVertical: 8,
+    paddingHorizontal: 16,
+      borderRadius: 999,
+        marginRight: 10,
+          marginBottom: 10,
+            borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.05)'
+},
+badgeLarge: {
+  paddingVertical: 10,
+    paddingHorizontal: 20,
+      borderRadius: 999,
+        marginRight: 12,
+          marginBottom: 12,
+            borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.05)'
+},
+selectedBadge: {
+  borderColor: 'transparent',
+    ...SHADOWS.small
+},
+textSmall: {
+  fontSize: 12,
+    fontWeight: '600' as const,
+      letterSpacing: 0.3
+},
+textMedium: {
+  fontSize: 14,
+    fontWeight: '600' as const,
+      letterSpacing: 0.3
+},
+textLarge: {
+  fontSize: 16,
+    fontWeight: '700' as const,
+      letterSpacing: 0.3
+}
 });
 
 export default CategoryBadge;

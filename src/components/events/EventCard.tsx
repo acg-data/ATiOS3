@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import { Event } from '../../types';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../../utils/constants';
-import { formatEventDate, getTrackColor, getTrackName } from '../../utils/helpers';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS, SHADOWS } from '../../utils/constants';
+import { formatEventDate, getTrackColor } from '../../utils/helpers';
 import CategoryBadge from '../common/CategoryBadge';
 import PriceTag from '../common/PriceTag';
 import FavoriteButton from './FavoriteButton';
@@ -19,44 +21,56 @@ const EventCard: React.FC<EventCardProps> = ({
   onFavoritePress
 }) => {
   const trackColor = getTrackColor(event.trackCode);
-  
+
   return (
     <TouchableOpacity
-      style={styles.card}
+      style={styles.container}
       onPress={onPress}
-      activeOpacity={0.8}
+      activeOpacity={0.92}
     >
-      {/* Track indicator bar */}
-      <View style={[styles.trackIndicator, { backgroundColor: trackColor }]} />
-      
-      <View style={styles.content}>
-        {/* Header with category and favorite */}
-        <View style={styles.header}>
-          <CategoryBadge trackCode={event.trackCode} size="small" />
-          <FavoriteButton
-            isFavorite={event.favorite}
-            onPress={onFavoritePress}
-          />
-        </View>
-        
-        {/* Event title */}
-        <Text style={styles.title} numberOfLines={2}>
-          {event.title}
-        </Text>
-        
-        {/* Date and time */}
-        <Text style={styles.dateTime}>
-          {formatEventDate(event.startDateTime)}
-        </Text>
-        
-        {/* Location */}
-        <Text style={styles.location} numberOfLines={1}>
-          {event.location}
-        </Text>
-        
-        {/* Footer with price */}
-        <View style={styles.footer}>
-          <PriceTag price={event.price || 50} size="small" />
+      <View style={styles.cardContainer}>
+        {/* Decorative Gradient Bar */}
+        <LinearGradient
+          colors={[trackColor, `${trackColor}80`]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.gradientBar}
+        />
+
+        <View style={styles.content}>
+          <View style={styles.mainInfo}>
+            <View style={styles.headerRow}>
+              <CategoryBadge trackCode={event.trackCode} size="small" />
+              <FavoriteButton isFavorite={event.favorite} onPress={onFavoritePress} />
+            </View>
+
+            <Text style={styles.title} numberOfLines={2}>
+              {event.title}
+            </Text>
+
+            <View style={styles.locationRow}>
+              <Ionicons name="location-outline" size={14} color={COLORS.textSecondary} />
+              <Text style={styles.location} numberOfLines={1}>
+                {event.location}
+              </Text>
+            </View>
+          </View>
+
+          {/* Right Side Date & Price Box */}
+          <View style={styles.sideInfo}>
+            <View style={styles.dateBox}>
+              <Text style={styles.dateText}>
+                {formatEventDate(event.startDateTime).split(',')[0]}
+              </Text>
+              <Text style={styles.timeText}>
+                {formatEventDate(event.startDateTime).split(',')[1]}
+              </Text>
+            </View>
+
+            <View style={styles.priceContainer}>
+              <PriceTag price={event.price || 50} size="medium" />
+            </View>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -64,55 +78,75 @@ const EventCard: React.FC<EventCardProps> = ({
 };
 
 const styles = StyleSheet.create({
-  card: {
-    flexDirection: 'row',
-    backgroundColor: COLORS.white,
-    borderRadius: 12,
+  container: {
     marginBottom: SPACING.md,
-    overflow: 'hidden',
-    ...{
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-      elevation: 3
-    }
+    paddingHorizontal: 4, // Space for shadow
+    paddingBottom: 4
   },
-  trackIndicator: {
-    width: 6,
-    backgroundColor: COLORS.primary
+  cardContainer: {
+    backgroundColor: COLORS.white,
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.03)',
+    ...SHADOWS.medium, // Premium float
+  },
+  gradientBar: {
+    height: 6,
+    width: '100%'
   },
   content: {
-    flex: 1,
-    padding: SPACING.md
+    flexDirection: 'row',
+    padding: SPACING.md,
   },
-  header: {
+  mainInfo: {
+    flex: 1,
+    marginRight: SPACING.md
+  },
+  headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: SPACING.sm
   },
   title: {
-    fontSize: FONT_SIZES.lg,
-    fontWeight: FONT_WEIGHTS.semibold,
-    color: COLORS.text,
-    marginBottom: SPACING.xs
+    fontSize: 17, // Slightly larger
+    fontWeight: '700',
+    color: '#1A1A1A',
+    marginBottom: SPACING.sm,
+    lineHeight: 22
   },
-  dateTime: {
-    fontSize: FONT_SIZES.sm,
-    color: COLORS.primary,
-    marginBottom: SPACING.xs,
-    ...FONT_WEIGHTS.medium
+  locationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4
   },
   location: {
     fontSize: FONT_SIZES.sm,
     color: COLORS.textSecondary,
+    fontWeight: '500'
+  },
+  sideInfo: {
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    minWidth: 80
+  },
+  dateBox: {
+    alignItems: 'flex-end',
     marginBottom: SPACING.sm
   },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+  dateText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: COLORS.primary
+  },
+  timeText: {
+    fontSize: 11,
+    color: COLORS.textSecondary,
+    marginTop: 2
+  },
+  priceContainer: {
+    marginTop: 'auto'
   }
 });
 
