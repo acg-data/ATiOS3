@@ -1,6 +1,11 @@
 const { getDefaultConfig } = require('expo/metro-config');
+const { withNativeWind } = require('nativewind/metro');
 
-const config = getDefaultConfig(__dirname);
+let config = getDefaultConfig(__dirname);
+
+config = withNativeWind(config, { input: './src/global.css' });
+
+const originalResolveRequest = config.resolver.resolveRequest;
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (platform === 'web') {
@@ -17,6 +22,10 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
         type: 'empty',
       };
     }
+  }
+  
+  if (originalResolveRequest) {
+    return originalResolveRequest(context, moduleName, platform);
   }
   return context.resolveRequest(context, moduleName, platform);
 };

@@ -1,178 +1,116 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, TextInput, TouchableOpacity, ImageBackground, Text } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useEventStore } from '../../stores';
-import { EventCard } from '../../components/events';
+import { TRACKS } from '../../types';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../components/ui/card';
+import { Badge } from '../../components/ui/badge';
+import { Button } from '../../components/ui/button';
 import { EmptyState, LoadingSpinner } from '../../components/common';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../../utils/constants';
 
 const EventsListScreen: React.FC = () => {
-  const { filteredEvents, isLoading, fetchEvents, toggleFavorite } = useEventStore();
+  const { filteredEvents, isLoading, fetchEvents } = useEventStore();
 
   useEffect(() => {
     fetchEvents();
   }, []);
 
-  const renderHeader = () => (
-    <View style={styles.heroCard}>
-      <Image
-        source={{ uri: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=800&auto=format&fit=crop' }}
-        style={styles.heroImage}
+  const renderHero = () => (
+    <Card className="mx-4 mt-6 mb-6 overflow-hidden h-[320px] border-0 shadow-lg relative rounded-3xl">
+      <ImageBackground
+        source={{ uri: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2805&auto=format&fit=crop' }}
+        className="absolute inset-0 w-full h-full"
         resizeMode="cover"
-      />
-      <View style={styles.heroOverlay}>
-        <View style={styles.heroBadge}>
-          <Text style={styles.heroBadgeText}>Trending Now</Text>
-        </View>
-        <Text style={styles.heroTitle}>The Finals</Text>
-        <Text style={styles.heroSubtitle}>Don't miss the biggest game of the year.</Text>
-        <TouchableOpacity style={styles.heroButton}>
-          <Text style={styles.heroButtonText}>Get Access</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+      >
+        <LinearGradient
+          colors={['transparent', 'rgba(0,0,0,0.8)']}
+          className="absolute inset-0 w-full h-full justify-end p-6"
+        >
+          <Badge variant="secondary" className="self-start mb-2 bg-primary/20 backdrop-blur-md border border-white/10">
+            <View><Text className="text-white font-bold">Trending Now</Text></View>
+          </Badge>
+          <CardTitle className="text-4xl text-white font-extrabold tracking-tight mb-2">
+            The Finals
+          </CardTitle>
+          <CardDescription className="text-gray-200 text-lg mb-4 font-medium">
+            Don't miss the biggest game of the year.
+          </CardDescription>
+          <Button size="lg" className="w-full bg-white active:bg-gray-100 rounded-full">
+            <Text className="text-black font-bold text-base">Get Access</Text>
+          </Button>
+        </LinearGradient>
+      </ImageBackground>
+    </Card>
   );
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (!filteredEvents || filteredEvents.length === 0) {
-    return (
-      <View style={styles.container}>
-        <View style={styles.searchContainer}>
-          <View style={styles.searchBar}>
-            <Ionicons name="search" size={20} color={COLORS.textSecondary} />
-            <TextInput
-              placeholder="Search events, teams, venues..."
-              style={styles.searchInput}
-              placeholderTextColor={COLORS.textSecondary}
-            />
-          </View>
+  const renderEventItem = ({ item }: { item: typeof filteredEvents[0] }) => (
+    <Card className="mb-4 mx-4 bg-card border-border/50 shadow-sm active:scale-[0.98] transition-transform">
+      <CardHeader className="p-4 pb-2 flex-row justify-between items-start">
+        <View className="flex-1">
+          <Badge variant="outline" className="mb-2 self-start border-primary/20 text-primary bg-primary/5">
+            <Text className="text-xs font-semibold uppercase tracking-wider">{item.trackCode}</Text>
+          </Badge>
+          <CardTitle className="text-xl leading-tight">{item.title}</CardTitle>
         </View>
-        <EmptyState
-          title="No Events Available"
-          message="Check back soon for upcoming events!"
-        />
-      </View>
-    );
-  }
+        <TouchableOpacity>
+          <Ionicons name="heart-outline" size={24} color="#64748b" />
+        </TouchableOpacity>
+      </CardHeader>
+
+      <CardContent className="p-4 pt-0">
+        <View className="flex-row items-center space-x-2 mb-1">
+          <Ionicons name="calendar-outline" size={14} color="#94a3b8" />
+          <Text className="text-muted-foreground text-sm font-medium ml-1">
+            {new Date(item.startDateTime).toLocaleDateString()}
+          </Text>
+        </View>
+        <View className="flex-row items-center space-x-2">
+          <Ionicons name="location-outline" size={14} color="#94a3b8" />
+          <Text className="text-muted-foreground text-sm ml-1">
+            {item.location}
+          </Text>
+        </View>
+      </CardContent>
+
+      <CardFooter className="p-4 pt-0 border-t border-border/40 flex-row justify-between items-center mt-2 pt-3">
+        <View>
+          <Text className="text-xs text-muted-foreground font-medium uppercase">Starting at</Text>
+          <Text className="text-lg font-bold text-primary">${item.price || 50}</Text>
+        </View>
+        <Button size="sm" variant="secondary" className="rounded-full px-6">
+          <Text className="font-semibold text-secondary-foreground">Buy Tickets</Text>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBar}>
-          <Ionicons name="search" size={20} color={COLORS.textSecondary} />
+    <View className="flex-1 bg-background">
+      {/* Floating Header */}
+      <View className="px-4 py-2 bg-background/80 backdrop-blur-xl z-10 sticky top-0 border-b border-border/50 pb-4 pt-12">
+        <View className="flex-row items-center bg-secondary/50 rounded-2xl p-2 px-4 shadow-sm border border-border/50">
+          <Ionicons name="search" size={20} color="#64748b" />
           <TextInput
-            placeholder="Search events, teams, venues..."
-            style={styles.searchInput}
-            placeholderTextColor={COLORS.textSecondary}
+            placeholder="Search events, teams..."
+            className="flex-1 ml-2 text-base font-medium h-10 text-foreground"
+            placeholderTextColor="#94a3b8"
           />
         </View>
       </View>
 
       <FlatList
         data={filteredEvents}
-        renderItem={({ item }) => (
-          <EventCard
-            event={item}
-            onPress={() => {}}
-            onFavoritePress={() => toggleFavorite(item.id)}
-          />
-        )}
-        ListHeaderComponent={renderHeader}
+        renderItem={renderEventItem}
+        ListHeaderComponent={renderHero}
         keyExtractor={item => item.id}
-        contentContainerStyle={styles.listContent}
+        contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background
-  },
-  searchContainer: {
-    backgroundColor: COLORS.white,
-    paddingHorizontal: SPACING.md,
-    paddingTop: SPACING.lg,
-    paddingBottom: SPACING.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.divider
-  },
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: COLORS.background,
-    borderRadius: 12,
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm
-  },
-  searchInput: {
-    flex: 1,
-    marginLeft: SPACING.sm,
-    fontSize: FONT_SIZES.md,
-    color: COLORS.text
-  },
-  listContent: {
-    paddingBottom: 100
-  },
-  heroCard: {
-    margin: SPACING.md,
-    borderRadius: 16,
-    overflow: 'hidden',
-    height: 280,
-    backgroundColor: COLORS.textDisabled
-  },
-  heroImage: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%'
-  },
-  heroOverlay: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    padding: SPACING.lg,
-    backgroundColor: 'rgba(0,0,0,0.4)'
-  },
-  heroBadge: {
-    backgroundColor: 'rgba(99, 102, 241, 0.9)',
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: 4,
-    borderRadius: 12,
-    alignSelf: 'flex-start',
-    marginBottom: SPACING.sm
-  },
-  heroBadgeText: {
-    color: COLORS.white,
-    fontSize: FONT_SIZES.xs,
-    fontWeight: FONT_WEIGHTS.bold
-  },
-  heroTitle: {
-    fontSize: 32,
-    fontWeight: FONT_WEIGHTS.bold,
-    color: COLORS.white,
-    marginBottom: SPACING.xs
-  },
-  heroSubtitle: {
-    fontSize: FONT_SIZES.lg,
-    color: 'rgba(255,255,255,0.9)',
-    marginBottom: SPACING.md
-  },
-  heroButton: {
-    backgroundColor: COLORS.white,
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.lg,
-    borderRadius: 24,
-    alignItems: 'center'
-  },
-  heroButtonText: {
-    color: COLORS.text,
-    fontSize: FONT_SIZES.md,
-    fontWeight: FONT_WEIGHTS.semibold
-  }
-});
 
 export default EventsListScreen;
