@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { TrackInfo, TRACKS } from '../../types';
-import { COLORS, SPACING, FONT_SIZES } from '../../utils/constants';
+import { COLORS, SPACING, FONT_SIZES, SHADOWS } from '../../utils/constants';
 
 interface CategoryBadgeProps {
   trackCode: number;
@@ -43,73 +43,80 @@ const CategoryBadge: React.FC<CategoryBadgeProps & TouchableOpacityProps> = ({
 
   const { badge, text } = getSizeStyles();
 
-  const Container = onPress ? TouchableOpacity : View;
+  const containerStyle = [
+    badge,
+    {
+      backgroundColor: selected ? track.color : `${track.color}20`
+    },
+    selected && styles.selectedBadge
+  ];
+
+  if (onPress) {
+    return (
+      <TouchableOpacity style={containerStyle} onPress={onPress} {...props}>
+        <Text style={[text, { color: selected ? COLORS.white : track.color }]}>
+          {track.name}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
 
   return (
-    <Container
-      style={[
-        badge,
-        {
-          backgroundColor: selected ? track.color : `${track.color}20`
-        },
-        selected && styles.selectedBadge
-      ]}
-      onPress={onPress}
-      {...props}
-    >
+    <View style={containerStyle}>
       <Text style={[text, { color: selected ? COLORS.white : track.color }]}>
         {track.name}
       </Text>
-    </Container>
+    </View>
   );
 };
 
-badgeSmall: {
-  paddingVertical: 6,
+const styles = StyleSheet.create({
+  badgeSmall: {
+    paddingVertical: 6,
     paddingHorizontal: 12,
-      borderRadius: 999, // Pill shape
-        marginRight: 8,
-          marginBottom: 8,
-            borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.05)'
-},
-badgeMedium: {
-  paddingVertical: 8,
+    borderRadius: 999,
+    marginRight: 8,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.05)'
+  },
+  badgeMedium: {
+    paddingVertical: 8,
     paddingHorizontal: 16,
-      borderRadius: 999,
-        marginRight: 10,
-          marginBottom: 10,
-            borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.05)'
-},
-badgeLarge: {
-  paddingVertical: 10,
+    borderRadius: 999,
+    marginRight: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.05)'
+  },
+  badgeLarge: {
+    paddingVertical: 10,
     paddingHorizontal: 20,
-      borderRadius: 999,
-        marginRight: 12,
-          marginBottom: 12,
-            borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.05)'
-},
-selectedBadge: {
-  borderColor: 'transparent',
+    borderRadius: 999,
+    marginRight: 12,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.05)'
+  },
+  selectedBadge: {
+    borderColor: 'transparent',
     ...SHADOWS.small
-},
-textSmall: {
-  fontSize: 12,
+  },
+  textSmall: {
+    fontSize: 12,
     fontWeight: '600' as const,
-      letterSpacing: 0.3
-},
-textMedium: {
-  fontSize: 14,
+    letterSpacing: 0.3
+  },
+  textMedium: {
+    fontSize: 14,
     fontWeight: '600' as const,
-      letterSpacing: 0.3
-},
-textLarge: {
-  fontSize: 16,
+    letterSpacing: 0.3
+  },
+  textLarge: {
+    fontSize: 16,
     fontWeight: '700' as const,
-      letterSpacing: 0.3
-}
+    letterSpacing: 0.3
+  }
 });
 
 export default CategoryBadge;
