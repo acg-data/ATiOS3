@@ -56,11 +56,21 @@ AceTicket is an iOS-focused ticket browsing and purchasing application built wit
 ### State Management
 - `zustand` - Lightweight state management
 
-### UI Components
+### UI Components & Styling
+- `nativewind` v4 - Tailwind CSS for React Native (uses babel preset, not plugin)
+- `tailwindcss` - Core styling framework
+- `class-variance-authority` - Variant styling for Shadcn-style components
+- `clsx` & `tw-merge` - Class name utilities
 - `react-native-svg` - SVG support
 - `react-native-qrcode-svg` - QR code generation
 - `react-native-reanimated` - Animations
 - `react-native-gesture-handler` - Gesture handling
+
+### Shadcn-style UI Components
+Located in `src/components/ui/`:
+- `button.tsx` - Configurable button with variants (default, destructive, outline, secondary, ghost, link)
+- `card.tsx` - Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+- `badge.tsx` - Badge with variants (default, secondary, destructive, outline)
 
 ### Native Features (iOS/Android only)
 - `react-native-maps` - Map display (excluded from web build)
@@ -80,8 +90,11 @@ The `metro.config.js` includes custom module resolution for web platform:
 - Some native modules may have limited web support
 
 ## Recent Changes
+- **Jan 2026**: Configured NativeWind v4 with proper babel presets and metro.config.js chaining
+- **Jan 2026**: Added Shadcn-style UI components (button, card, badge) with class-variance-authority
+- **Jan 2026**: Updated EventsListScreen with premium hero section and Tailwind styling
 - **Jan 2026**: Fixed import paths across all screens and components
-- **Jan 2026**: Added metro.config.js for proper web bundling
+- **Jan 2026**: Added metro.config.js for proper web bundling with NativeWind wrapper
 - **Jan 2026**: Created placeholder asset images
 - **Jan 2026**: Fixed TypeScript errors (duplicate exports, missing constants)
 - **Jan 2026**: Configured Expo to run on port 5000 with web preview support
