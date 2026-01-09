@@ -48,18 +48,7 @@ export interface Speaker {
   name: string;
 }
 
-export interface Venue {
-  id: string;
-  name: string;
-  address: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  latitude: number;
-  longitude: number;
-  capacity?: number;
-  imageUrl?: string;
-}
+import { Venue } from './venue';
 
 export interface Event {
   id: string;

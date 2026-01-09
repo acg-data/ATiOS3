@@ -3,438 +3,214 @@ import { Event, Ticket, TicketStatus, Venue } from '../types';
 // Event Categories
 export const MLB_EVENTS: Event[] = [
   {
-    id: 'evt-001',
+    id: 'evt-sox-001',
     trackCode: 1,
-    title: 'Boston Red Sox vs New York Yankees',
-    shortDescription: "America's greatest rivalry returns to Fenway Park. Gates open at 5:30 PM. Don't miss this historic matchup between the Red Sox and Yankees.",
+    title: 'Boston Red Sox vs St. Louis Cardinals',
+    shortDescription: "Opening homestand series at Fenway Park. The Red Sox host the Cardinals.",
     speakers: [{ name: 'Boston Red Sox' }],
     location: 'Fenway Park, Boston, MA',
-    startDateTime: '2025-04-15T19:10:00-0400',
-    endDateTime: '2025-04-15T22:30:00-0400',
+    startDateTime: '2025-04-04T19:10:00-0400',
+    endDateTime: '2025-04-04T22:30:00-0400',
     favorite: false,
-    price: 75,
-    availableSeats: 5000
+    price: 45,
+    availableSeats: 5000,
+    imageUrl: 'https://images.unsplash.com/photo-1506097425191-7ad538b29cef?q=80&w=2670&auto=format&fit=crop'
   },
   {
-    id: 'evt-002',
+    id: 'evt-sox-002',
     trackCode: 1,
-    title: 'Boston Red Sox vs Tampa Bay Rays',
-    shortDescription: 'AL East showdown at Fenway Park. Watch the Red Sox take on the Rays in this exciting division matchup.',
+    title: 'Boston Red Sox vs Chicago White Sox',
+    shortDescription: "Patriots' Day Weekend series at Fenway. A Boston tradition.",
     speakers: [{ name: 'Boston Red Sox' }],
     location: 'Fenway Park, Boston, MA',
-    startDateTime: '2025-04-20T19:10:00-0400',
-    endDateTime: '2025-04-20T22:30:00-0400',
+    startDateTime: '2025-04-18T19:10:00-0400',
+    endDateTime: '2025-04-18T22:30:00-0400',
     favorite: false,
     price: 65,
-    availableSeats: 8000
+    availableSeats: 8000,
+    imageUrl: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2805&auto=format&fit=crop'
   },
   {
-    id: 'evt-034',
+    id: 'evt-sox-003',
     trackCode: 1,
-    title: 'Boston Red Sox vs Baltimore Orioles',
-    shortDescription: 'AL East action at Fenway Park as the Red Sox take on the Orioles.',
+    title: 'Boston Red Sox vs New York Mets',
+    shortDescription: 'Interleague play brings the Mets to Fenway Park for a midweek series.',
     speakers: [{ name: 'Boston Red Sox' }],
     location: 'Fenway Park, Boston, MA',
-    startDateTime: '2025-05-05T19:10:00-0400',
-    endDateTime: '2025-05-05T22:30:00-0400',
+    startDateTime: '2025-05-19T19:10:00-0400',
+    endDateTime: '2025-05-19T22:30:00-0400',
     favorite: false,
-    price: 55,
-    availableSeats: 12000
-  },
-  {
-    id: 'evt-035',
-    trackCode: 1,
-    title: 'World Series Game 7',
-    shortDescription: 'The biggest stage in baseball comes to Fenway Park for Game 7 of the World Series.',
-    speakers: [{ name: 'World Series' }],
-    location: 'Fenway Park, Boston, MA',
-    startDateTime: '2025-10-30T19:08:00-0400',
-    endDateTime: '2025-10-30T23:30:00-0400',
-    favorite: false,
-    price: 500,
-    availableSeats: 500
+    price: 85,
+    availableSeats: 2000,
+    imageUrl: 'https://images.unsplash.com/photo-1587383378797-a9a609d40a36?q=80&w=2861&auto=format&fit=crop'
   }
 ];
 
 export const NHL_EVENTS: Event[] = [
   {
-    id: 'evt-003',
+    id: 'evt-bruins-001',
     trackCode: 2,
-    title: 'Boston Bruins vs Montreal Canadiens',
-    shortDescription: 'Original Six matchup at TD Garden. The Bruins take on their historic rivals, the Montreal Canadiens.',
+    title: 'Boston Bruins vs Washington Capitals',
+    shortDescription: 'Late season Eastern Conference clash at the Garden.',
     speakers: [{ name: 'Boston Bruins' }],
     location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-03-20T19:00:00-0400',
-    endDateTime: '2025-03-20T22:00:00-0400',
+    startDateTime: '2025-04-01T19:00:00-0400',
+    endDateTime: '2025-04-01T21:30:00-0400',
     favorite: false,
-    price: 85,
-    availableSeats: 3000
+    price: 110,
+    availableSeats: 1500,
+    imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2787&auto=format&fit=crop'
   },
   {
-    id: 'evt-004',
+    id: 'evt-bruins-002',
     trackCode: 2,
-    title: 'Boston Bruins vs Boston College',
-    shortDescription: 'NHL takes on NCAA in the annual Frozen Fenway outdoor game at Fenway Park.',
+    title: 'Boston Bruins vs New Jersey Devils',
+    shortDescription: 'Regular Season Finale. Catch the last scheduled home game before the playoffs.',
     speakers: [{ name: 'Boston Bruins' }],
-    location: 'Fenway Park, Boston, MA',
-    startDateTime: '2025-01-15T16:00:00-0500',
-    endDateTime: '2025-01-15T19:00:00-0500',
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2025-04-15T19:00:00-0400',
+    endDateTime: '2025-04-15T21:30:00-0400',
     favorite: false,
-    price: 95,
-    availableSeats: 4000
+    price: 140,
+    availableSeats: 500,
+    imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2787&auto=format&fit=crop'
   }
 ];
 
 export const NBA_EVENTS: Event[] = [
   {
-    id: 'evt-005',
+    id: 'evt-cs-001',
     trackCode: 3,
-    title: 'Boston Celtics vs Los Angeles Lakers',
-    shortDescription: "NBA's greatest rivalry comes to TD Garden. The Celtics host the Lakers in this marquee matchup.",
+    title: 'Boston Celtics vs Miami Heat',
+    shortDescription: "Rivalry night at TD Garden. Playoff implications are on the line.",
     speakers: [{ name: 'Boston Celtics' }],
     location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-03-10T19:30:00-0500',
-    endDateTime: '2025-03-10T22:30:00-0500',
-    favorite: false,
-    price: 150,
-    availableSeats: 2000
+    startDateTime: '2025-04-02T19:30:00-0400',
+    endDateTime: '2025-04-02T22:00:00-0400',
+    favorite: true,
+    price: 180,
+    availableSeats: 800,
+    imageUrl: 'https://images.unsplash.com/photo-1533446051752-9bc50d2764f6?q=80&w=2670&auto=format&fit=crop'
   },
   {
-    id: 'evt-006',
+    id: 'evt-cs-002',
     trackCode: 3,
-    title: 'Boston Celtics vs Brooklyn Nets',
-    shortDescription: 'Eastern Conference battle at TD Garden. The Celtics take on the Nets in this exciting NBA matchup.',
+    title: 'Boston Celtics vs Phoenix Suns',
+    shortDescription: 'Kevin Durant and the Suns visit Boston for a marquee matchup.',
     speakers: [{ name: 'Boston Celtics' }],
     location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-04-05T19:30:00-0400',
-    endDateTime: '2025-04-05T22:30:00-0400',
+    startDateTime: '2025-04-04T19:30:00-0400',
+    endDateTime: '2025-04-04T22:00:00-0400',
     favorite: false,
-    price: 120,
-    availableSeats: 3500
+    price: 220,
+    availableSeats: 400,
+    imageUrl: 'https://images.unsplash.com/photo-1504450304029-d886de913809?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-cs-003',
+    trackCode: 3,
+    title: 'NBA Playoffs: Round 1, Game 1',
+    shortDescription: 'The quest for Banner 19 continues. Opponent TBD (Likely Magic/Pacers).',
+    speakers: [{ name: 'Boston Celtics' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2025-04-20T15:30:00-0400',
+    endDateTime: '2025-04-20T18:00:00-0400',
+    favorite: false,
+    price: 350,
+    availableSeats: 200,
+    imageUrl: 'https://images.unsplash.com/photo-1533446051752-9bc50d2764f6?q=80&w=2670&auto=format&fit=crop'
   }
 ];
 
 export const NFL_EVENTS: Event[] = [
   {
-    id: 'evt-007',
+    id: 'evt-nfl-001',
     trackCode: 4,
-    title: 'New England Patriots vs New York Jets',
-    shortDescription: 'AFC East rivalry at Gillette Stadium. The Patriots host the Jets in this divisional showdown.',
+    title: 'NFL Draft Party 2025',
+    shortDescription: 'Watch the draft live from Gillette Stadium with Patriots alumni.',
     speakers: [{ name: 'New England Patriots' }],
     location: 'Gillette Stadium, Foxborough, MA',
-    startDateTime: '2025-10-12T13:00:00-0400',
-    endDateTime: '2025-10-12T16:30:00-0400',
+    startDateTime: '2025-04-24T19:00:00-0400',
+    endDateTime: '2025-04-24T23:00:00-0400',
     favorite: false,
-    price: 200,
-    availableSeats: 15000
-  },
-  {
-    id: 'evt-008',
-    trackCode: 4,
-    title: 'New England Patriots vs Buffalo Bills',
-    shortDescription: 'Another AFC East battle at Gillette Stadium. The Patriots take on the Bills in this crucial division game.',
-    speakers: [{ name: 'New England Patriots' }],
-    location: 'Gillette Stadium, Foxborough, MA',
-    startDateTime: '2025-11-23T13:00:00-0500',
-    endDateTime: '2025-11-23T16:30:00-0500',
-    favorite: false,
-    price: 180,
-    availableSeats: 20000
+    price: 25,
+    availableSeats: 2000,
+    imageUrl: 'https://images.unsplash.com/photo-1485579149621-3123dd979885?q=80&w=2831&auto=format&fit=crop'
   }
 ];
 
-export const NCAA_EVENTS: Event[] = [
-  {
-    id: 'evt-009',
-    trackCode: 5,
-    title: 'Boston College vs Notre Dame',
-    shortDescription: 'ACC Football showdown at Alumni Stadium. Boston College hosts Notre Dame in this exciting college matchup.',
-    speakers: [{ name: 'Boston College Football' }],
-    location: 'Alumni Stadium, Boston, MA',
-    startDateTime: '2025-10-05T12:00:00-0400',
-    endDateTime: '2025-10-05T15:30:00-0400',
-    favorite: false,
-    price: 45,
-    availableSeats: 10000
-  },
-  {
-    id: 'evt-010',
-    trackCode: 5,
-    title: 'Harvard vs Yale',
-    shortDescription: 'The Game: Harvard vs Yale at Harvard Stadium. The oldest rivalry in college football returns.',
-    speakers: [{ name: 'Harvard Crimson' }],
-    location: 'Harvard Stadium, Cambridge, MA',
-    startDateTime: '2025-11-22T12:00:00-0500',
-    endDateTime: '2025-11-22T15:30:00-0500',
-    favorite: false,
-    price: 60,
-    availableSeats: 8000
-  }
-];
+export const NCAA_EVENTS: Event[] = [];
 
 export const CONCERT_EVENTS: Event[] = [
   {
-    id: 'evt-011',
+    id: 'evt-concert-001',
     trackCode: 6,
-    title: 'Taylor Swift - Eras Tour',
-    shortDescription: "Taylor Swift brings her record-breaking Eras Tour to Gillette Stadium for two unforgettable nights.",
-    speakers: [{ name: 'Taylor Swift' }],
-    location: 'Gillette Stadium, Foxborough, MA',
-    startDateTime: '2025-06-15T19:00:00-0400',
-    endDateTime: '2025-06-15T23:00:00-0400',
-    favorite: false,
-    price: 250,
-    availableSeats: 25000
-  },
-  {
-    id: 'evt-012',
-    trackCode: 6,
-    title: 'Ed Sheeran - Mathematics Tour',
-    shortDescription: 'Ed Sheeran performs at TD Garden as part of his Mathematics World Tour.',
-    speakers: [{ name: 'Ed Sheeran' }],
+    title: 'Deftones with The Mars Volta',
+    shortDescription: "Alternative metal legends Deftones bring their heavy sound to the Garden.",
+    speakers: [{ name: 'Deftones' }],
     location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-05-20T19:00:00-0400',
-    endDateTime: '2025-05-20T22:00:00-0400',
-    favorite: false,
-    price: 180,
-    availableSeats: 5000
-  },
-  {
-    id: 'evt-013',
-    trackCode: 6,
-    title: 'Billie Eilish - Hit Me Hard and Soft Tour',
-    shortDescription: 'Billie Eilish brings her latest tour to TD Garden for an intimate performance.',
-    speakers: [{ name: 'Billie Eilish' }],
-    location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-07-10T20:00:00-0400',
-    endDateTime: '2025-07-10T23:00:00-0400',
-    favorite: false,
-    price: 200,
-    availableSeats: 4500
-  }
-];
-
-export const THEATER_EVENTS: Event[] = [
-  {
-    id: 'evt-014',
-    trackCode: 7,
-    title: 'Hamilton - Broadway in Boston',
-    shortDescription: "Lin-Manuel Miranda's revolutionary musical comes to the Boston Opera House for a limited engagement.",
-    speakers: [{ name: 'Hamilton' }],
-    location: 'Boston Opera House, Boston, MA',
-    startDateTime: '2025-03-01T19:30:00-0500',
-    endDateTime: '2025-03-01T22:30:00-0500',
-    favorite: false,
-    price: 180,
-    availableSeats: 2500
-  },
-  {
-    id: 'evt-015',
-    trackCode: 7,
-    title: 'The Book of Mormon',
-    shortDescription: 'The outrageous musical comedy from the creators of South Park comes to Boston for a hilarious run.',
-    speakers: [{ name: 'The Book of Mormon' }],
-    location: 'Boston Opera House, Boston, MA',
-    startDateTime: '2025-04-15T19:30:00-0400',
-    endDateTime: '2025-04-15T22:30:00-0400',
-    favorite: false,
-    price: 150,
-    availableSeats: 2800
-  },
-  {
-    id: 'evt-016',
-    trackCode: 7,
-    title: 'Wicked',
-    shortDescription: "The untold story of the witches of Oz comes to the Citizens Bank Opera House.",
-    speakers: [{ name: 'Wicked' }],
-    location: 'Citizens Bank Opera House, Boston, MA',
-    startDateTime: '2025-05-20T19:30:00-0400',
-    endDateTime: '2025-05-20T22:30:00-0400',
-    favorite: false,
-    price: 160,
-    availableSeats: 3000
-  }
-];
-
-export const COMEDY_EVENTS: Event[] = [
-  {
-    id: 'evt-017',
-    trackCode: 8,
-    title: 'John Mulaney Live',
-    shortDescription: 'Comedy superstar John Mulaney brings his latest stand-up tour to the Wang Theatre.',
-    speakers: [{ name: 'John Mulaney' }],
-    location: 'Wang Theatre, Boston, MA',
-    startDateTime: '2025-03-25T20:00:00-0400',
-    endDateTime: '2025-03-25T22:00:00-0400',
+    startDateTime: '2025-04-08T19:00:00-0400',
+    endDateTime: '2025-04-08T23:00:00-0400',
     favorite: false,
     price: 85,
-    availableSeats: 1500
+    availableSeats: 2000,
+    imageUrl: 'https://images.unsplash.com/photo-1501612766622-2717fdb1dfe7?q=80&w=2669&auto=format&fit=crop'
   },
   {
-    id: 'evt-018',
-    trackCode: 8,
-    title: 'Hannah Gadsby Live',
-    shortDescription: 'Award-winning comedian Hannah Gadsby performs at the Wilbur Theatre.',
-    speakers: [{ name: 'Hannah Gadsby' }],
-    location: 'Wilbur Theatre, Boston, MA',
-    startDateTime: '2025-04-30T20:00:00-0400',
-    endDateTime: '2025-04-30T22:00:00-0400',
+    id: 'evt-concert-002',
+    trackCode: 6,
+    title: 'Tate McRae: Miss Possessive Tour',
+    shortDescription: 'Rising pop star Tate McRae performs her biggest hits live.',
+    speakers: [{ name: 'Tate McRae' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2025-08-09T19:30:00-0400',
+    endDateTime: '2025-08-09T23:00:00-0400',
     favorite: false,
-    price: 75,
-    availableSeats: 1200
+    price: 120,
+    availableSeats: 3000,
+    imageUrl: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2000&auto=format&fit=crop'
   }
 ];
 
+export const THEATER_EVENTS: Event[] = [];
+export const COMEDY_EVENTS: Event[] = [];
 export const FESTIVAL_EVENTS: Event[] = [
   {
-    id: 'evt-019',
+    id: 'evt-fest-001',
     trackCode: 9,
     title: 'Boston Calling Music Festival',
-    shortDescription: "Boston's premier music festival returns to the Harvard Athletic Complex featuring top artists across multiple genres.",
-    speakers: [{ name: 'Boston Calling Festival' }],
+    shortDescription: "3 Days of Music at the Harvard Athletic Complex. Lineup TBA.",
+    speakers: [{ name: 'Boston Calling' }],
     location: 'Harvard Athletic Complex, Boston, MA',
     startDateTime: '2025-05-23T12:00:00-0400',
     endDateTime: '2025-05-25T23:00:00-0400',
     favorite: false,
-    price: 350,
-    availableSeats: 15000
-  },
-  {
-    id: 'evt-020',
-    trackCode: 9,
-    title: 'Hot Summer Nights Festival',
-    shortDescription: 'Summer concert series at the Hatch Shell featuring local and national acts.',
-    speakers: [{ name: 'Hot Summer Nights' }],
-    location: 'Hatch Memorial Shell, Boston, MA',
-    startDateTime: '2025-07-15T18:00:00-0400',
-    endDateTime: '2025-07-15T22:00:00-0400',
-    favorite: false,
-    price: 45,
-    availableSeats: 5000
+    price: 360,
+    availableSeats: 5000,
+    imageUrl: 'https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=2670&auto=format&fit=crop'
   }
 ];
-
-export const WRESTLING_EVENTS: Event[] = [
-  {
-    id: 'evt-021',
-    trackCode: 10,
-    title: 'WWE SummerSlam',
-    shortDescription: "WWE's biggest event of the summer comes to TD Garden. Don't miss the biggest matches of the year.",
-    speakers: [{ name: 'WWE' }],
-    location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-08-23T19:00:00-0400',
-    endDateTime: '2025-08-23T23:00:00-0400',
-    favorite: false,
-    price: 175,
-    availableSeats: 6000
-  },
-  {
-    id: 'evt-022',
-    trackCode: 10,
-    title: 'WWE Royal Rumble',
-    shortDescription: 'The Royal Rumble match determines who will headline WrestleMania. Live from TD Garden!',
-    speakers: [{ name: 'WWE' }],
-    location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-01-31T19:00:00-0500',
-    endDateTime: '2025-01-31T23:00:00-0500',
-    favorite: false,
-    price: 150,
-    availableSeats: 7000
-  }
-];
-
-export const MMA_UFC_EVENTS: Event[] = [
-  {
-    id: 'evt-023',
-    trackCode: 11,
-    title: 'UFC Fight Night',
-    shortDescription: 'UFC brings live mixed martial arts action to TD Garden. Featuring top contenders in multiple weight classes.',
-    speakers: [{ name: 'UFC' }],
-    location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-06-12T20:00:00-0400',
-    endDateTime: '2025-06-12T23:00:00-0400',
-    favorite: false,
-    price: 200,
-    availableSeats: 5500
-  },
-  {
-    id: 'evt-025',
-    trackCode: 12,
-    title: 'UFC 300: Championship Night',
-    shortDescription: "UFC's milestone 300th event comes to TD Garden with multiple title fights and the biggest names in MMA.",
-    speakers: [{ name: 'UFC' }],
-    location: 'TD Garden, Boston, MA',
-    startDateTime: '2025-04-12T20:00:00-0400',
-    endDateTime: '2025-04-12T23:30:00-0400',
-    favorite: false,
-    price: 300,
-    availableSeats: 4500
-  }
-];
-
+export const WRESTLING_EVENTS: Event[] = [];
+export const MMA_UFC_EVENTS: Event[] = [];
 export const SOCCER_EVENTS: Event[] = [
   {
-    id: 'evt-026',
+    id: 'evt-revs-001',
     trackCode: 13,
     title: 'New England Revolution vs New York City FC',
-    shortDescription: 'MLS Eastern Conference matchup at Gillette Stadium. The Revolution take on NYCFC in this exciting soccer match.',
-    speakers: [{ name: 'New England Revolution' }],
+    shortDescription: 'MLS Eastern Conference rivalry at Gillette.',
+    speakers: [{ name: 'NE Revolution' }],
     location: 'Gillette Stadium, Foxborough, MA',
     startDateTime: '2025-05-10T19:30:00-0400',
     endDateTime: '2025-05-10T22:00:00-0400',
     favorite: false,
-    price: 55,
-    availableSeats: 10000
+    price: 45,
+    availableSeats: 8000,
+    imageUrl: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?q=80&w=2823&auto=format&fit=crop'
   }
 ];
-
-export const GOLF_EVENTS: Event[] = [
-  {
-    id: 'evt-028',
-    trackCode: 14,
-    title: 'Travelers Championship Golf Tournament',
-    shortDescription: 'Professional golf comes to TPC River Highlands for this PGA Tour event. Watch the world\'s best golfers compete.',
-    speakers: [{ name: 'PGA Tour' }],
-    location: 'TPC River Highlands, Cromwell, CT',
-    startDateTime: '2025-06-20T08:00:00-0400',
-    endDateTime: '2025-06-20T17:00:00-0400',
-    favorite: false,
-    price: 150,
-    availableSeats: 20000
-  }
-];
-
-export const TENNIS_EVENTS: Event[] = [
-  {
-    id: 'evt-031',
-    trackCode: 15,
-    title: 'Boston Open Tennis Tournament',
-    shortDescription: 'Professional tennis returns to Boston with the Boston Open at the Revere Tennis Center.',
-    speakers: [{ name: 'ATP Tour' }],
-    location: 'Revere Tennis Center, Revere, MA',
-    startDateTime: '2025-07-01T10:00:00-0400',
-    endDateTime: '2025-07-01T18:00:00-0400',
-    favorite: false,
-    price: 75,
-    availableSeats: 3000
-  }
-];
-
-export const RACING_EVENTS: Event[] = [
-  {
-    id: 'evt-032',
-    trackCode: 16,
-    title: 'NASCAR Cup Series at New Hampshire',
-    shortDescription: 'NASCAR comes to New Hampshire Motor Speedway for an exciting day of stock car racing.',
-    speakers: [{ name: 'NASCAR' }],
-    location: 'New Hampshire Motor Speedway, Loudon, NH',
-    startDateTime: '2025-07-19T14:30:00-0400',
-    endDateTime: '2025-07-19T18:30:00-0400',
-    favorite: false,
-    price: 125,
-    availableSeats: 50000
-  }
-];
+export const GOLF_EVENTS: Event[] = [];
+export const TENNIS_EVENTS: Event[] = [];
+export const RACING_EVENTS: Event[] = [];
 
 // All events combined
 export const ALL_EVENTS: Event[] = [
@@ -455,76 +231,37 @@ export const ALL_EVENTS: Event[] = [
   ...RACING_EVENTS
 ];
 
-// Sample tickets
+// Sample tickets (Updated to match new event IDs)
 export const SAMPLE_TICKETS: Ticket[] = [
   {
     id: 'tkt-001',
-    eventId: 'evt-001',
-    eventTitle: 'Boston Red Sox vs New York Yankees',
+    eventId: 'evt-sox-001',
+    eventTitle: 'Boston Red Sox vs St. Louis Cardinals',
     venue: 'Fenway Park',
-    date: '2025-04-15T19:10:00-0400',
+    date: '2025-04-04T19:10:00-0400',
     section: 'Grandstand 12',
     row: 'A',
     seat: '5',
-    qrCode: 'ACETICKET-TKT001-REDSOX-20250415',
+    qrCode: 'ACETICKET-TKT001-REDSOX-20250404',
     status: TicketStatus.Purchased,
-    price: 75
+    price: 45
   },
   {
     id: 'tkt-002',
-    eventId: 'evt-003',
-    eventTitle: 'Boston Bruins vs Montreal Canadiens',
+    eventId: 'evt-cs-001',
+    eventTitle: 'Boston Celtics vs Miami Heat',
     venue: 'TD Garden',
-    date: '2025-03-20T19:00:00-0400',
-    section: 'Lower Bowl 5',
+    date: '2025-04-02T19:30:00-0400',
+    section: 'Loge 4',
     row: 'B',
     seat: '12',
-    qrCode: 'ACETICKET-TKT002-BRUINS-20250320',
-    status: TicketStatus.Purchased,
-    price: 85
-  },
-  {
-    id: 'tkt-003',
-    eventId: 'evt-005',
-    eventTitle: 'Boston Celtics vs Los Angeles Lakers',
-    venue: 'TD Garden',
-    date: '2025-03-10T19:30:00-0500',
-    section: 'Courtside',
-    row: 'VIP',
-    seat: '1',
-    qrCode: 'ACETICKET-TKT003-CELTICS-20250310',
-    status: TicketStatus.Purchased,
-    price: 250
-  },
-  {
-    id: 'tkt-004',
-    eventId: 'evt-011',
-    eventTitle: 'Taylor Swift - Eras Tour',
-    venue: 'Gillette Stadium',
-    date: '2025-06-15T19:00:00-0400',
-    section: 'Field General Admission',
-    row: 'GA',
-    seat: '12345',
-    qrCode: 'ACETICKET-TKT004-TAYLORSWIFT-20250615',
-    status: TicketStatus.Purchased,
-    price: 120
-  },
-  {
-    id: 'tkt-005',
-    eventId: 'evt-014',
-    eventTitle: 'Hamilton - Broadway in Boston',
-    venue: 'Boston Opera House',
-    date: '2025-03-01T19:30:00-0500',
-    section: 'Orchestra Center',
-    row: 'H',
-    seat: '10',
-    qrCode: 'ACETICKET-TKT005-HAMILTON-20250301',
+    qrCode: 'ACETICKET-TKT002-CELTICS-20250402',
     status: TicketStatus.Purchased,
     price: 180
   }
 ];
 
-// Sample venues
+// Sample venues remain the same as they are static data
 export const VENUES: Venue[] = [
   {
     id: 'venue-001',
