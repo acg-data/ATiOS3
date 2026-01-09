@@ -27,17 +27,14 @@ const EventsListScreen: React.FC = () => {
           colors={['transparent', 'rgba(0,0,0,0.9)']}
           className="absolute inset-0 w-full h-full justify-end p-8"
         >
-          <Badge variant="secondary" className="self-start mb-4 bg-white/20 backdrop-blur-xl border border-white/30 px-4 py-1.5 rounded-full shadow-sm">
-            <View><Text className="text-white font-bold tracking-wide text-xs">TRENDING NOW</Text></View>
-          </Badge>
           <CardTitle className="text-5xl text-white font-black tracking-tighter mb-2 shadow-text">
-            The Finals
+            We Buy Direct.
           </CardTitle>
-          <CardDescription className="text-gray-100 text-lg mb-6 font-medium opacity-90">
-            Don't miss the biggest game of the year.
+          <CardDescription className="text-gray-100 text-2xl mb-6 font-bold opacity-90">
+            You Save 10%.
           </CardDescription>
           <Button size="lg" className="w-full bg-white active:bg-gray-200 rounded-full h-14 shadow-xl border-b-4 border-gray-300">
-            <Text className="text-black font-extrabold text-lg">Get Access</Text>
+            <Text className="text-black font-extrabold text-lg">Start Saving</Text>
           </Button>
         </LinearGradient>
       </ImageBackground>
