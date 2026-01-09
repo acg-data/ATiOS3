@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, TextInput, TouchableOpacity, ImageBackground, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useEventStore } from '../../stores';
@@ -10,7 +11,8 @@ import { Button } from '../../components/ui/button';
 import { EmptyState, LoadingSpinner } from '../../components/common';
 
 const EventsListScreen: React.FC = () => {
-  const { filteredEvents, isLoading, fetchEvents } = useEventStore();
+  const { filteredEvents, isLoading, fetchEvents, setFilters } = useEventStore();
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     fetchEvents();
@@ -42,7 +44,7 @@ const EventsListScreen: React.FC = () => {
   );
 
   const renderEventItem = ({ item }: { item: typeof filteredEvents[0] }) => (
-    <Card className="mb-6 mx-4 bg-card border border-border/60 shadow-lg rounded-3xl overflow-hidden active:scale-[0.98] transition-all duration-200">
+    <Card className="mb-6 mx-4 bg-card border border-border/60 shadow-lg rounded-[32px] overflow-hidden active:scale-[0.98] transition-all duration-200">
       <CardHeader className="p-5 pb-3 flex-row justify-between items-start">
         <View className="flex-1 mr-4">
           <Badge variant="outline" className="mb-2 self-start border-primary/30 text-primary bg-primary/10 rounded-md px-2 py-0.5">
@@ -78,7 +80,11 @@ const EventsListScreen: React.FC = () => {
             <Text className="text-xs text-muted-foreground ml-1 font-medium">/ticket</Text>
           </View>
         </View>
-        <Button size="sm" className="rounded-full px-6 h-10 shadow-md bg-primary">
+        <Button
+          size="sm"
+          className="rounded-full px-6 h-10 shadow-md bg-primary"
+          onPress={() => navigation.navigate('EventDetail', { eventId: item.id })}
+        >
           <Text className="font-bold text-primary-foreground">Buy Now</Text>
         </Button>
       </CardFooter>
@@ -94,10 +100,7 @@ const EventsListScreen: React.FC = () => {
         <View className="flex-row items-center bg-white/50 border border-white/40 rounded-full h-12 px-4 shadow-sm">
           <Ionicons name="search" size={20} color="#64748b" />
           <TextInput
-            placeholder="Search events, teams..."
-            className="flex-1 ml-3 text-base font-semibold text-foreground h-full"
-            placeholderTextColor="#94a3b8"
-          />
+            placeholder="Search events, teams..." className="flex-1 ml-3 text-base font-semibold text-foreground h-full" placeholderTextColor="#94a3b8" onChangeText={(text) => setFilters({ searchQuery: text })} />
           <View className="w-8 h-8 rounded-full bg-gray-200 items-center justify-center">
             <Text className="text-xs font-bold text-gray-600">J</Text>
           </View>

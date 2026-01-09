@@ -74,6 +74,62 @@ export const NHL_EVENTS: Event[] = [
     price: 140,
     availableSeats: 500,
     imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2787&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-bruins-003',
+    trackCode: 2,
+    title: 'Boston Bruins vs Pittsburgh Penguins',
+    shortDescription: 'Crosby vs Pasternak. A classic rivalry at the Garden.',
+    speakers: [{ name: 'Boston Bruins' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-01-11T17:00:00-0400',
+    endDateTime: '2026-01-11T19:30:00-0400',
+    favorite: true,
+    price: 130,
+    availableSeats: 800,
+    imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2787&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-bruins-004',
+    trackCode: 2,
+    title: 'Boston Bruins vs Montreal Canadiens',
+    shortDescription: 'The oldest rivalry in hockey. Always a sellout.',
+    speakers: [{ name: 'Boston Bruins' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-01-24T19:00:00-0400',
+    endDateTime: '2026-01-24T21:30:00-0400',
+    favorite: false,
+    price: 150,
+    availableSeats: 300,
+    imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2787&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-bruins-005',
+    trackCode: 2,
+    title: 'Boston Bruins vs Columbus Blue Jackets',
+    shortDescription: 'The Bruins return from the break to host Columbus.',
+    speakers: [{ name: 'Boston Bruins' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-02-26T19:00:00-0400',
+    endDateTime: '2026-02-26T21:30:00-0400',
+    favorite: false,
+    price: 95,
+    availableSeats: 2000,
+    imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2787&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-bruins-006',
+    trackCode: 2,
+    title: 'Boston Bruins vs Washington Capitals',
+    shortDescription: 'Matinee matchup at the Garden.',
+    speakers: [{ name: 'Boston Bruins' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-03-07T12:30:00-0400',
+    endDateTime: '2026-03-07T15:00:00-0400',
+    favorite: false,
+    price: 115,
+    availableSeats: 1200,
+    imageUrl: 'https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2787&auto=format&fit=crop'
   }
 ];
 
@@ -147,6 +203,48 @@ export const NBA_EVENTS: Event[] = [
     price: 160,
     availableSeats: 500,
     imageUrl: 'https://images.unsplash.com/photo-1519861531473-920026393112?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-cs-006',
+    trackCode: 3,
+    title: 'Boston Celtics vs Toronto Raptors',
+    shortDescription: 'Make-A-Wish Night at TD Garden as the Celts host Toronto.',
+    speakers: [{ name: 'Boston Celtics' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-01-09T19:00:00-0400',
+    endDateTime: '2026-01-09T21:30:00-0400',
+    favorite: false,
+    price: 110,
+    availableSeats: 1500,
+    imageUrl: 'https://images.unsplash.com/photo-1533446051752-9bc50d2764f6?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-cs-007',
+    trackCode: 3,
+    title: 'Boston Celtics vs Milwaukee Bucks',
+    shortDescription: 'Giannis meets Tatum in a potential ECF preview.',
+    speakers: [{ name: 'Boston Celtics' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-02-01T15:30:00-0400',
+    endDateTime: '2026-02-01T18:00:00-0400',
+    favorite: true,
+    price: 240,
+    availableSeats: 500,
+    imageUrl: 'https://images.unsplash.com/photo-1504450304029-d886de913809?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-cs-008',
+    trackCode: 3,
+    title: 'Boston Celtics vs Golden State Warriors',
+    shortDescription: 'Finals rematch! Stephen Curry returns to Boston.',
+    speakers: [{ name: 'Boston Celtics' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-03-18T19:00:00-0400',
+    endDateTime: '2026-03-18T21:30:00-0400',
+    favorite: true,
+    price: 350,
+    availableSeats: 200,
+    imageUrl: 'https://images.unsplash.com/photo-1533446051752-9bc50d2764f6?q=80&w=2670&auto=format&fit=crop'
   }
 ];
 
@@ -253,6 +351,48 @@ export const CONCERT_EVENTS: Event[] = [
     price: 250,
     availableSeats: 1000,
     imageUrl: 'https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-concert-007',
+    trackCode: 6,
+    title: 'PBR - Unleash The Beast',
+    shortDescription: 'The worlds top bull riders descend on TD Garden.',
+    speakers: [{ name: 'PBR' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-01-03T19:00:00-0400',
+    endDateTime: '2026-01-03T22:00:00-0400',
+    favorite: false,
+    price: 45,
+    availableSeats: 5000,
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-concert-008',
+    trackCode: 6,
+    title: 'Brandi Carlile & The Head and The Heart',
+    shortDescription: 'An evening of folk-rock excellence at the Garden.',
+    speakers: [{ name: 'Brandi Carlile' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-02-12T19:30:00-0400',
+    endDateTime: '2026-02-12T23:00:00-0400',
+    favorite: false,
+    price: 90,
+    availableSeats: 2500,
+    imageUrl: 'https://images.unsplash.com/photo-1459749411177-287ce371a392?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-concert-009',
+    trackCode: 6,
+    title: 'Nine Inch Nails',
+    shortDescription: 'Industrial rock icons Nine Inch Nails bring their intense show to Boston.',
+    speakers: [{ name: 'Nine Inch Nails' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-02-13T20:00:00-0400',
+    endDateTime: '2026-02-13T23:00:00-0400',
+    favorite: true,
+    price: 110,
+    availableSeats: 1000,
+    imageUrl: 'https://images.unsplash.com/photo-1470229722913-7c0d2dbbafd3?q=80&w=2670&auto=format&fit=crop'
   },
   {
     id: 'evt-concert-004',

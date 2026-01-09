@@ -17,6 +17,7 @@ export interface Ticket {
   qrCode: string;
   status: TicketStatus;
   price: number;
+  type?: string;
 }
 
 export interface TicketFilters {

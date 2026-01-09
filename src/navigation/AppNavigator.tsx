@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Screens
 import EventsListScreen from '../screens/Browse/EventsListScreen';
+import EventDetailScreen from '../screens/Tickets/EventDetailScreen';
 import FavoritesScreen from '../screens/Favorites/FavoritesScreen';
 import MapScreen from '../screens/Map/MapScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
@@ -32,6 +33,11 @@ const BrowseStack = () => (
     <Stack.Screen
       name="EventsList"
       component={EventsListScreen}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="EventDetail"
+      component={EventDetailScreen}
       options={{ headerShown: false }}
     />
   </Stack.Navigator>
@@ -126,7 +132,7 @@ const AppNavigator: React.FC = () => {
           headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: keyof typeof Ionicons.glyphMap;
-            
+
             switch (route.name) {
               case 'Browse':
                 iconName = focused ? 'search' : 'search-outline';
@@ -149,7 +155,7 @@ const AppNavigator: React.FC = () => {
               default:
                 iconName = 'help-outline';
             }
-            
+
             return (
               <Ionicons
                 name={iconName}
