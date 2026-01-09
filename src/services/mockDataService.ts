@@ -119,6 +119,34 @@ export const NBA_EVENTS: Event[] = [
     price: 350,
     availableSeats: 200,
     imageUrl: 'https://images.unsplash.com/photo-1533446051752-9bc50d2764f6?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-cs-004',
+    trackCode: 3,
+    title: 'Boston Celtics vs New Orleans Pelicans',
+    shortDescription: 'Late season matchup as the Celtics look to secure the top seed.',
+    speakers: [{ name: 'Boston Celtics' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-04-10T19:30:00-0400',
+    endDateTime: '2026-04-10T22:00:00-0400',
+    favorite: false,
+    price: 140,
+    availableSeats: 1200,
+    imageUrl: 'https://images.unsplash.com/photo-1504450304029-d886de913809?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-cs-005',
+    trackCode: 3,
+    title: 'Boston Celtics vs Orlando Magic',
+    shortDescription: 'Regular Season Finale. Fan Appreciation Night at the Garden.',
+    speakers: [{ name: 'Boston Celtics' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-04-12T18:00:00-0400',
+    endDateTime: '2026-04-12T20:30:00-0400',
+    favorite: true,
+    price: 160,
+    availableSeats: 500,
+    imageUrl: 'https://images.unsplash.com/photo-1519861531473-920026393112?q=80&w=2670&auto=format&fit=crop'
   }
 ];
 
@@ -136,6 +164,48 @@ export const NFL_EVENTS: Event[] = [
     price: 25,
     availableSeats: 2000,
     imageUrl: 'https://images.unsplash.com/photo-1485579149621-3123dd979885?q=80&w=2831&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-nfl-002',
+    trackCode: 4,
+    title: 'New England Patriots vs Buffalo Bills',
+    shortDescription: '2026 Home Opener! AFC East rivalry renews at Gillette Stadium.',
+    speakers: [{ name: 'New England Patriots' }],
+    location: 'Gillette Stadium, Foxborough, MA',
+    startDateTime: '2026-09-13T13:00:00-0400',
+    endDateTime: '2026-09-13T16:30:00-0400',
+    favorite: true,
+    price: 250,
+    availableSeats: 15000,
+    imageUrl: 'https://images.unsplash.com/photo-1628717341663-0007b0ee2597?q=80&w=2671&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-nfl-003',
+    trackCode: 4,
+    title: 'New England Patriots vs Green Bay Packers',
+    shortDescription: 'The Packers come to Foxborough for a rare interconference showdown.',
+    speakers: [{ name: 'New England Patriots' }],
+    location: 'Gillette Stadium, Foxborough, MA',
+    startDateTime: '2026-10-04T16:25:00-0400',
+    endDateTime: '2026-10-04T19:30:00-0400',
+    favorite: false,
+    price: 350,
+    availableSeats: 5000,
+    imageUrl: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?q=80&w=2626&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-nfl-004',
+    trackCode: 4,
+    title: 'New England Patriots vs Pittsburgh Steelers',
+    shortDescription: 'Classic AFC battle. Two historic franchises meet again.',
+    speakers: [{ name: 'New England Patriots' }],
+    location: 'Gillette Stadium, Foxborough, MA',
+    startDateTime: '2026-10-25T13:00:00-0400',
+    endDateTime: '2026-10-25T16:30:00-0400',
+    favorite: false,
+    price: 220,
+    availableSeats: 8000,
+    imageUrl: 'https://images.unsplash.com/photo-1599583726712-8e100cb362f6?q=80&w=2670&auto=format&fit=crop'
   }
 ];
 
@@ -169,6 +239,62 @@ export const CONCERT_EVENTS: Event[] = [
     price: 120,
     availableSeats: 3000,
     imageUrl: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2000&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-concert-003',
+    trackCode: 6,
+    title: 'Lady Gaga Live',
+    shortDescription: "Lady Gaga returns to TD Garden for her highly anticipated 2026 tour.",
+    speakers: [{ name: 'Lady Gaga' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-03-29T20:00:00-0400',
+    endDateTime: '2026-03-29T23:00:00-0400',
+    favorite: true,
+    price: 250,
+    availableSeats: 1000,
+    imageUrl: 'https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-concert-004',
+    trackCode: 6,
+    title: 'Ariana Grande: 2026 World Tour',
+    shortDescription: 'Ariana Grande takes over TD Garden for a three-night residency.',
+    speakers: [{ name: 'Ariana Grande' }],
+    location: 'TD Garden, Boston, MA',
+    startDateTime: '2026-07-22T19:30:00-0400',
+    endDateTime: '2026-07-22T23:00:00-0400',
+    favorite: false,
+    price: 200,
+    availableSeats: 3000,
+    imageUrl: 'https://images.unsplash.com/photo-1509335224055-685c1f01c779?q=80&w=2670&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-concert-005',
+    trackCode: 6,
+    title: 'Chris Stapleton at Fenway',
+    shortDescription: 'Country superstar Chris Stapleton headlines the Nucar Fenway Concert Series.',
+    speakers: [{ name: 'Chris Stapleton' }],
+    location: 'Fenway Park, Boston, MA',
+    startDateTime: '2026-08-14T18:30:00-0400',
+    endDateTime: '2026-08-14T23:00:00-0400',
+    favorite: false,
+    price: 130,
+    availableSeats: 15000,
+    imageUrl: 'https://images.unsplash.com/photo-1513106580091-1d82408b8cd8?q=80&w=2676&auto=format&fit=crop'
+  },
+  {
+    id: 'evt-concert-006',
+    trackCode: 6,
+    title: 'Ed Sheeran at Gillette',
+    shortDescription: 'Ed Sheeran brings his massive stadium tour to Gillette Stadium for two nights.',
+    speakers: [{ name: 'Ed Sheeran' }],
+    location: 'Gillette Stadium, Foxborough, MA',
+    startDateTime: '2026-09-25T19:00:00-0400',
+    endDateTime: '2026-09-25T23:00:00-0400',
+    favorite: false,
+    price: 150,
+    availableSeats: 40000,
+    imageUrl: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=2670&auto=format&fit=crop'
   }
 ];
 
