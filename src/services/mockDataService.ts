@@ -497,34 +497,53 @@ export const ALL_EVENTS: Event[] = [
   ...RACING_EVENTS
 ];
 
-// Sample tickets (Updated to match new event IDs)
+// Map Sections to internal IDs for simpler logic
+export enum StadiumSection {
+  Floor = 'floor',
+  LogeLower = 'loge_lower',
+  LogeUpper = 'loge_upper',
+  Balcony = 'balcony'
+}
+
+// Helper to generate tickets for an event
+const generateTicketsForEvent = (eventId: string, basePrice: number): Ticket[] => {
+  const categories = [
+    { sectionId: StadiumSection.Floor, name: 'Floor/Parquet', multiplier: 2.5, type: 'VIP' },
+    { sectionId: StadiumSection.LogeLower, name: 'Loge Lower', multiplier: 1.5, type: 'Premium' },
+    { sectionId: StadiumSection.LogeUpper, name: 'Loge Upper', multiplier: 1.0, type: 'Standard' },
+    { sectionId: StadiumSection.Balcony, name: 'Balcony', multiplier: 0.7, type: 'Economy' },
+  ];
+
+  const tickets: Ticket[] = [];
+  categories.forEach((cat, index) => {
+    // Generate 3-5 rows per section
+    for (let r = 1; r <= 3; r++) {
+      const row = String.fromCharCode(64 + r); // A, B, C
+      tickets.push({
+        id: `tkt-${eventId}-${cat.sectionId}-${r}`,
+        eventId,
+        eventTitle: 'Dynamic Event', // Overridden by UI usually
+        venue: 'Venue',
+        date: '2026-01-01',
+        section: cat.name,
+        sectionId: cat.sectionId as any, // Adding internal ID for filtering
+        row,
+        seat: '12',
+        qrCode: `QR-${eventId}-${index}-${r}`,
+        status: TicketStatus.Purchased,
+        price: Math.round(basePrice * cat.multiplier),
+        type: cat.type
+      });
+    }
+  });
+  return tickets;
+};
+
+// Expanded tickets
 export const SAMPLE_TICKETS: Ticket[] = [
-  {
-    id: 'tkt-001',
-    eventId: 'evt-sox-001',
-    eventTitle: 'Boston Red Sox vs St. Louis Cardinals',
-    venue: 'Fenway Park',
-    date: '2026-04-04T19:10:00-0400',
-    section: 'Grandstand 12',
-    row: 'A',
-    seat: '5',
-    qrCode: 'ACETICKET-TKT001-REDSOX-20260404',
-    status: TicketStatus.Purchased,
-    price: 45
-  },
-  {
-    id: 'tkt-002',
-    eventId: 'evt-cs-001',
-    eventTitle: 'Boston Celtics vs Miami Heat',
-    venue: 'TD Garden',
-    date: '2026-04-02T19:30:00-0400',
-    section: 'Loge 4',
-    row: 'B',
-    seat: '12',
-    qrCode: 'ACETICKET-TKT002-CELTICS-20260402',
-    status: TicketStatus.Purchased,
-    price: 180
-  }
+  ...generateTicketsForEvent('evt-cs-006', 110),
+  ...generateTicketsForEvent('evt-bruins-003', 130),
+  ...generateTicketsForEvent('evt-sox-001', 45),
 ];
 
 // Sample venues remain the same as they are static data
@@ -612,6 +631,16 @@ export class MockDataService {
   static async getEventsByCategory(trackCode: number): Promise<Event[]> {
     await new Promise(resolve => setTimeout(resolve, 300));
     return ALL_EVENTS.filter(event => event.trackCode === trackCode);
+  }
+
+  static async getTicketsByEvent(eventId: string): Promise<Ticket[]> {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    const event = ALL_EVENTS.find(e => e.id === eventId);
+    if (!event) return [];
+
+    // Return filtered sample tickets or generate them if they don't exist
+    const filtered = SAMPLE_TICKETS.filter(t => t.eventId === eventId);
+    return filtered.length > 0 ? filtered : generateTicketsForEvent(eventId, event.price || 100);
   }
 
   static async getTickets(): Promise<Ticket[]> {

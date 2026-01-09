@@ -18,6 +18,7 @@ export interface Ticket {
   status: TicketStatus;
   price: number;
   type?: string;
+  sectionId?: string;
 }
 
 export interface TicketFilters {
