@@ -1,58 +1,41 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle, TouchableOpacity } from 'react-native';
-import { COLORS } from '../../utils/constants';
+import { View, ViewProps } from 'react-native';
 
-interface CardProps {
-  children: React.ReactNode;
-  style?: ViewStyle;
-  elevated?: boolean;
-  bordered?: boolean;
+interface CardProps extends ViewProps {
+  variant?: 'elevated' | 'outlined' | 'flat';
+  padding?: 'none' | 'small' | 'medium' | 'large';
   onPress?: () => void;
 }
 
-const Card: React.FC<CardProps> = ({
-  children,
+export const Card: React.FC<CardProps> = ({
+  variant = 'elevated',
+  padding = 'medium',
+  className,
   style,
-  elevated = false,
-  bordered = false,
-  onPress
+  ...props
 }) => {
-  const Container = onPress ? TouchableOpacity : View;
-  
+  const baseClasses = "rounded-xl bg-white";
+
+  const variantClasses = {
+    elevated: "shadow-md",
+    outlined: "border border-gray-200",
+    flat: "",
+  };
+
+  const paddingClasses = {
+    none: "p-0",
+    small: "p-2",
+    medium: "p-4",
+    large: "p-6",
+  };
+
   return (
-    <Container
-      style={[
-        styles.card,
-        elevated && styles.elevated,
-        bordered && styles.bordered,
-        style
-      ]}
-      onPress={onPress}
-      activeOpacity={onPress ? 0.8 : 1}
-    >
-      {children}
-    </Container>
+    <View
+      className={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${className || ''}`}
+      style={style}
+      {...props}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12
-  },
-  elevated: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3
-  },
-  bordered: {
-    borderWidth: 1,
-    borderColor: COLORS.divider
-  }
-});
 
 export default Card;

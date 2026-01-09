@@ -1,250 +1,116 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Text
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, TextInput, TouchableOpacity, ImageBackground, Text } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import { useEventStore } from '../../stores';
 import { TRACKS } from '../../types';
-import { EventCard } from '../../components/events';
-import { EmptyState, LoadingSpinner, CategoryBadge } from '../../components/common';
-import { COLORS, SPACING, FONT_SIZES, SHADOWS } from '../../utils/constants';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../components/ui/card';
+import { Badge } from '../../components/ui/badge';
+import { Button } from '../../components/ui/button';
+import { EmptyState, LoadingSpinner } from '../../components/common';
 
 const EventsListScreen: React.FC = () => {
-  const {
-    filteredEvents,
-    favorites,
-    isLoading,
-    fetchEvents,
-    toggleFavorite,
-    setFilters,
-    loadFavorites
-  } = useEventStore();
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
-  const [showFilters, setShowFilters] = useState(false);
+  const { filteredEvents, isLoading, fetchEvents } = useEventStore();
 
   useEffect(() => {
     fetchEvents();
-    loadFavorites();
   }, []);
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    setFilters({ searchQuery: query });
-  };
-
-  const toggleCategory = (trackId: number) => {
-    const newCategories = selectedCategories.includes(trackId)
-      ? selectedCategories.filter(id => id !== trackId)
-      : [...selectedCategories, trackId];
-
-    setSelectedCategories(newCategories);
-    setFilters({ trackIds: newCategories.length > 0 ? newCategories : undefined });
-  };
-
-  const clearFilters = () => {
-    setSelectedCategories([]);
-    setSearchQuery('');
-    setFilters({});
-  };
-
-  const hasFilters = searchQuery.length > 0 || selectedCategories.length > 0;
-
-  const renderCategoryItem = ({ item }: { item: typeof TRACKS[0] }) => (
-    <CategoryBadge
-      trackCode={item.id}
-      selected={selectedCategories.includes(item.id)}
-      onPress={() => toggleCategory(item.id)}
-      size="small"
-    />
+  const renderHero = () => (
+    <Card className="mx-4 mt-6 mb-6 overflow-hidden h-[320px] border-0 shadow-lg relative rounded-3xl">
+      <ImageBackground
+        source={{ uri: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2805&auto=format&fit=crop' }}
+        className="absolute inset-0 w-full h-full"
+        resizeMode="cover"
+      >
+        <LinearGradient
+          colors={['transparent', 'rgba(0,0,0,0.8)']}
+          className="absolute inset-0 w-full h-full justify-end p-6"
+        >
+          <Badge variant="secondary" className="self-start mb-2 bg-primary/20 backdrop-blur-md border border-white/10">
+            <View><Text className="text-white font-bold">Trending Now</Text></View>
+          </Badge>
+          <CardTitle className="text-4xl text-white font-extrabold tracking-tight mb-2">
+            The Finals
+          </CardTitle>
+          <CardDescription className="text-gray-200 text-lg mb-4 font-medium">
+            Don't miss the biggest game of the year.
+          </CardDescription>
+          <Button size="lg" className="w-full bg-white active:bg-gray-100 rounded-full">
+            <Text className="text-black font-bold text-base">Get Access</Text>
+          </Button>
+        </LinearGradient>
+      </ImageBackground>
+    </Card>
   );
 
   const renderEventItem = ({ item }: { item: typeof filteredEvents[0] }) => (
-    <EventCard
-      event={item}
-      onPress={() => {
-        // Navigate to event detail
-        console.log('Navigate to event:', item.id);
-      }}
-      onFavoritePress={() => toggleFavorite(item.id)}
-    />
-  );
-
-  const renderSearchBar = () => (
-    <View style={styles.searchContainer}>
-      <View style={styles.searchBar}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search events, teams, venues..."
-          placeholderTextColor={COLORS.textSecondary}
-          value={searchQuery}
-          onChangeText={handleSearch}
-        />
-        {searchQuery.length > 0 && (
-          <TouchableOpacity onPress={() => handleSearch('')}>
-            <Text style={styles.clearButton}>✕</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-
-      <TouchableOpacity
-        style={[
-          styles.filterButton,
-          hasFilters && styles.filterButtonActive
-        ]}
-        onPress={() => setShowFilters(!showFilters)}
-      >
-        <Text style={[
-          styles.filterButtonText,
-          hasFilters && styles.filterButtonTextActive
-        ]}>
-          {hasFilters ? `${selectedCategories.length} filters` : 'Filters'}
-        </Text>
-      </TouchableOpacity>
-    </View>
-  );
-
-  const renderFilters = () => {
-    if (!showFilters) return null;
-
-    return (
-      <View style={styles.filtersContainer}>
-        <View style={styles.filterHeader}>
-          <Text style={styles.filterTitle}>Categories</Text>
-          {hasFilters && (
-            <TouchableOpacity onPress={clearFilters}>
-              <Text style={styles.clearFiltersText}>Clear All</Text>
-            </TouchableOpacity>
-          )}
+    <Card className="mb-4 mx-4 bg-card border-border/50 shadow-sm active:scale-[0.98] transition-transform">
+      <CardHeader className="p-4 pb-2 flex-row justify-between items-start">
+        <View className="flex-1">
+          <Badge variant="outline" className="mb-2 self-start border-primary/20 text-primary bg-primary/5">
+            <Text className="text-xs font-semibold uppercase tracking-wider">{item.trackCode}</Text>
+          </Badge>
+          <CardTitle className="text-xl leading-tight">{item.title}</CardTitle>
         </View>
+        <TouchableOpacity>
+          <Ionicons name="heart-outline" size={24} color="#64748b" />
+        </TouchableOpacity>
+      </CardHeader>
 
-        <FlatList
-          data={TRACKS}
-          renderItem={renderCategoryItem}
-          keyExtractor={item => item.id.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoriesList}
-        />
+      <CardContent className="p-4 pt-0">
+        <View className="flex-row items-center space-x-2 mb-1">
+          <Ionicons name="calendar-outline" size={14} color="#94a3b8" />
+          <Text className="text-muted-foreground text-sm font-medium ml-1">
+            {new Date(item.startDateTime).toLocaleDateString()}
+          </Text>
+        </View>
+        <View className="flex-row items-center space-x-2">
+          <Ionicons name="location-outline" size={14} color="#94a3b8" />
+          <Text className="text-muted-foreground text-sm ml-1">
+            {item.location}
+          </Text>
+        </View>
+      </CardContent>
+
+      <CardFooter className="p-4 pt-0 border-t border-border/40 flex-row justify-between items-center mt-2 pt-3">
+        <View>
+          <Text className="text-xs text-muted-foreground font-medium uppercase">Starting at</Text>
+          <Text className="text-lg font-bold text-primary">${item.price || 50}</Text>
+        </View>
+        <Button size="sm" variant="secondary" className="rounded-full px-6">
+          <Text className="font-semibold text-secondary-foreground">Buy Tickets</Text>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+
+  if (isLoading) return <LoadingSpinner />;
+
+  return (
+    <View className="flex-1 bg-background">
+      {/* Floating Header */}
+      <View className="px-4 py-2 bg-background/80 backdrop-blur-xl z-10 sticky top-0 border-b border-border/50 pb-4 pt-12">
+        <View className="flex-row items-center bg-secondary/50 rounded-2xl p-2 px-4 shadow-sm border border-border/50">
+          <Ionicons name="search" size={20} color="#64748b" />
+          <TextInput
+            placeholder="Search events, teams..."
+            className="flex-1 ml-2 text-base font-medium h-10 text-foreground"
+            placeholderTextColor="#94a3b8"
+          />
+        </View>
       </View>
-    );
-  };
 
-  const renderContent = () => {
-    if (isLoading) {
-      return <LoadingSpinner />;
-    }
-
-    if (filteredEvents.length === 0) {
-      return (
-        <EmptyState
-          title={hasFilters ? 'No Events Found' : 'No Events Yet'}
-          message={
-            hasFilters
-              ? 'Try adjusting your filters or search query'
-              : 'Check back soon for upcoming events!'
-          }
-          buttonTitle={hasFilters ? 'Clear Filters' : undefined}
-          onButtonPress={hasFilters ? clearFilters : undefined}
-        />
-      );
-    }
-
-    return (
       <FlatList
         data={filteredEvents}
         renderItem={renderEventItem}
+        ListHeaderComponent={renderHero}
         keyExtractor={item => item.id}
-        contentContainerStyle={styles.eventsList}
+        contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={renderFilters()}
       />
-    );
-  };
-
-  return (
-    <View style={styles.container}>
-      {renderSearchBar()}
-      {renderContent()}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F7F7F7' // Cleaner off-white
-  },
-  searchContainer: {
-    paddingHorizontal: SPACING.md,
-    paddingTop: SPACING.md,
-    paddingBottom: SPACING.sm,
-    backgroundColor: 'transparent',
-    zIndex: 10
-  },
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: COLORS.white,
-    borderRadius: 12,
-    paddingHorizontal: SPACING.md,
-    height: 48,
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.05)',
-    ...SHADOWS.small
-  },
-  searchInput: {
-    flex: 1,
-    height: '100%',
-    fontSize: FONT_SIZES.md,
-    color: COLORS.text,
-    marginLeft: 8
-  },
-  clearButton: {
-    fontSize: 18,
-    color: COLORS.textSecondary,
-    padding: 4
-  },
-  filtersContainer: {
-    paddingBottom: SPACING.sm,
-  },
-  filterHeader: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    paddingHorizontal: SPACING.md,
-    marginBottom: SPACING.sm
-  },
-  filterTitle: {
-    display: 'none'
-  },
-  clearFiltersText: {
-    fontSize: FONT_SIZES.sm,
-    color: COLORS.primary,
-    fontWeight: '600'
-  },
-  categoriesList: {
-    paddingHorizontal: SPACING.md,
-    paddingVertical: 4
-  },
-  eventsList: {
-    padding: SPACING.md,
-    paddingTop: SPACING.sm
-  },
-  filterButton: {
-    marginLeft: 8,
-    padding: 8
-  },
-  filterButtonText: {
-    display: 'none'
-  },
-  filterButtonActive: {},
-  filterButtonTextActive: {}
-});
 
 export default EventsListScreen;
