@@ -99,8 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 8,
-    ...FONT_WEIGHTS.semibold
+    borderRadius: 8
   },
   button_small: {
     paddingVertical: SPACING.xs,

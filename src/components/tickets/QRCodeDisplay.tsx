@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
     marginTop: SPACING.md,
     fontSize: FONT_SIZES.md,
     color: COLORS.textSecondary,
-    ...FONT_WEIGHTS.medium
+    fontWeight: FONT_WEIGHTS.medium
   },
   ticketId: {
     marginTop: SPACING.sm,
     fontSize: FONT_SIZES.xs,
     color: COLORS.textDisabled,
-    ...FONT_WEIGHTS.regular
+    fontWeight: FONT_WEIGHTS.regular
   }
 });
 

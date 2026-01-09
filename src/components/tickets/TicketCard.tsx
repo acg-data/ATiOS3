@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZES.sm,
     color: COLORS.primary,
     marginBottom: 4,
-    ...FONT_WEIGHTS.medium
+    fontWeight: FONT_WEIGHTS.medium
   },
   venue: {
     fontSize: FONT_SIZES.sm,
