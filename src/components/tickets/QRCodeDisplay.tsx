@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../utils/constants';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../../utils/constants';
 
 interface QRCodeDisplayProps {
   value: string;

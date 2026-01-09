@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { useTicketStore } from '../stores';
-import { TicketCard } from '../components/tickets';
-import { EmptyState, LoadingSpinner } from '../components/common';
-import { COLORS, SPACING, FONT_SIZES } from '../utils/constants';
+import { useTicketStore } from '../../stores';
+import { TicketCard } from '../../components/tickets';
+import { EmptyState, LoadingSpinner } from '../../components/common';
+import { COLORS, SPACING, FONT_SIZES } from '../../utils/constants';
 
 const MyTicketsScreen: React.FC = () => {
   const {

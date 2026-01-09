@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking, Share } from 'react-native';
-import { COLORS, SPACING, FONT_SIZES, APP_CONFIG } from '../utils/constants';
+import { COLORS, SPACING, FONT_SIZES, APP_CONFIG } from '../../utils/constants';
 
 interface MenuItem {
   title: string;

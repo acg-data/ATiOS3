@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ticket, TicketStatus } from '../types';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../utils/constants';
-import { formatTicketDate, getSeatDisplay } from '../utils/helpers';
+import { Ticket, TicketStatus } from '../../types';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../../utils/constants';
+import { formatTicketDate, getSeatDisplay } from '../../utils/helpers';
 
 interface TicketCardProps {
   ticket: Ticket;

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
-import MockDataService from '../services/mockDataService';
-import { Venue } from '../types';
-import { COLORS, SPACING, FONT_SIZES } from '../utils/constants';
+import MockDataService from '../../services/mockDataService';
+import { Venue } from '../../types';
+import { COLORS, SPACING, FONT_SIZES } from '../../utils/constants';
 
 const MapScreen: React.FC = () => {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);

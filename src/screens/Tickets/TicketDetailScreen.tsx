@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useTicketStore } from '../stores';
-import { QRCodeDisplay } from '../components/tickets';
-import { LoadingSpinner } from '../components/common';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../utils/constants';
-import { formatTicketDate, getSeatDisplay } from '../utils/helpers';
+import { useTicketStore } from '../../stores';
+import { QRCodeDisplay } from '../../components/tickets';
+import { LoadingSpinner } from '../../components/common';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../../utils/constants';
+import { formatTicketDate, getSeatDisplay } from '../../utils/helpers';
 
 const TicketDetailScreen: React.FC<{ route: any }> = ({ route }) => {
   const { ticketId } = route.params || {};

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Event } from '../types';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../utils/constants';
-import { formatEventDate, getTrackColor, getTrackName } from '../utils/helpers';
+import { Event } from '../../types';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../../utils/constants';
+import { formatEventDate, getTrackColor, getTrackName } from '../../utils/helpers';
 import CategoryBadge from '../common/CategoryBadge';
 import PriceTag from '../common/PriceTag';
 import FavoriteButton from './FavoriteButton';

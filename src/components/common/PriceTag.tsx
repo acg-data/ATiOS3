@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS, SPACING } from '../utils/constants';
-import { formatPrice } from '../utils/helpers';
+import { COLORS, SPACING } from '../../utils/constants';
+import { formatPrice } from '../../utils/helpers';
 
 interface PriceTagProps {
   price: number;

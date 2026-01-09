@@ -7,6 +7,7 @@ export const COLORS = {
   
   // Semantic mappings
   primary: '#3862FA',       // Ace Blue
+  primaryLight: '#E8EDFE',  // Light blue for backgrounds
   secondary: '#DD0000',     // Ace Red
   background: '#FFFFFF',
   surface: '#F8F8F8',

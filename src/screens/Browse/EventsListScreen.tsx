@@ -8,10 +8,10 @@ import {
   Text
 } from 'react-native';
 import { useEventStore } from '../../stores';
-import { TRACKS } from '../types';
-import { EventCard } from '../components/events';
-import { EmptyState, LoadingSpinner, CategoryBadge } from '../components/common';
-import { COLORS, SPACING, FONT_SIZES } from '../utils/constants';
+import { TRACKS } from '../../types';
+import { EventCard } from '../../components/events';
+import { EmptyState, LoadingSpinner, CategoryBadge } from '../../components/common';
+import { COLORS, SPACING, FONT_SIZES } from '../../utils/constants';
 
 const EventsListScreen: React.FC = () => {
   const {

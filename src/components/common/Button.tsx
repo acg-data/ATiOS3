@@ -6,9 +6,10 @@ import {
   ActivityIndicator,
   ViewStyle,
   TextStyle,
-  TouchableOpacityProps
+  TouchableOpacityProps,
+  View
 } from 'react-native';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../utils/constants';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS } from '../../utils/constants';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;

@@ -8,9 +8,9 @@ import {
   ScrollView,
   Image
 } from 'react-native';
-import { useUserStore } from '../stores';
-import { Button } from '../components/common';
-import { COLORS, SPACING, FONT_SIZES, APP_CONFIG } from '../utils/constants';
+import { useUserStore } from '../../stores';
+import { Button } from '../../components/common';
+import { COLORS, SPACING, FONT_SIZES, APP_CONFIG } from '../../utils/constants';
 
 const ProfileScreen: React.FC = () => {
   const { user, isAuthenticated, isLoading, login, register, logout } = useUserStore();

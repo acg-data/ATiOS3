@@ -1,4 +1,4 @@
 export * from './event';
 export * from './ticket';
-export * from './venue';
+export { VenueWithEvents } from './venue';
 export * from './user';

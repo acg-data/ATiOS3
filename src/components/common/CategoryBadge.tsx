@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { TrackInfo, TRACKS } from '../types';
-import { COLORS, SPACING, FONT_SIZES } from '../utils/constants';
+import { TrackInfo, TRACKS } from '../../types';
+import { COLORS, SPACING, FONT_SIZES } from '../../utils/constants';
 
 interface CategoryBadgeProps {
   trackCode: number;

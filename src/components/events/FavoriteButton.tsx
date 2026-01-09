@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { COLORS } from '../utils/constants';
+import { COLORS } from '../../utils/constants';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;

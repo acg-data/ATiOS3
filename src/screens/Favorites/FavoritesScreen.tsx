@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { useEventStore } from '../stores';
-import { EventCard } from '../components/events';
-import { EmptyState, LoadingSpinner } from '../components/common';
-import { COLORS, SPACING, FONT_SIZES } from '../utils/constants';
+import { useEventStore } from '../../stores';
+import { EventCard } from '../../components/events';
+import { EmptyState, LoadingSpinner } from '../../components/common';
+import { COLORS, SPACING, FONT_SIZES } from '../../utils/constants';
 
 const FavoritesScreen: React.FC = () => {
   const {
