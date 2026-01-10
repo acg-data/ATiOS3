@@ -21,7 +21,8 @@ const DEFAULT_PREFERENCES: UserPreferences = {
   notificationsEnabled: true,
   favoriteTeams: [],
   preferredVenues: [],
-  reminderTime: 60 // 1 hour before event
+  reminderTime: 60, // 1 hour before event
+  theme: 'dark' // Default to dark theme
 };
 
 export const useUserStore = create<UserState>((set, get) => ({

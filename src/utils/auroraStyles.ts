@@ -1,51 +1,53 @@
 import { StyleSheet, ViewStyle, TextStyle, ShadowStyleIOS } from 'react-native';
-import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS, BORDER_RADIUS } from './constants';
+import { SPACING, FONT_SIZES, FONT_WEIGHTS, BORDER_RADIUS } from './constants';
+import { useTheme } from '../contexts/ThemeContext';
 
-// Aurora-UI Dark Theme Styling Utilities
-// Provides consistent styling patterns across the app
+// Aurora-UI Theme-Aware Styling Utilities
+// Provides consistent styling patterns that adapt to light/dark theme
 
-export const auroraStyles = StyleSheet.create({
+// Create theme-aware styles function
+export const createAuroraStyles = (colors: any) => StyleSheet.create({
   // Core Layout Styles
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: colors.background,
   },
 
   // Card Styles
   card: {
-    backgroundColor: COLORS.surface,
+    backgroundColor: colors.surface,
     borderRadius: BORDER_RADIUS.lg,
     borderWidth: 1,
-    borderColor: COLORS.divider,
+    borderColor: colors.divider,
     ...{
-      shadowColor: '#000',
+      shadowColor: colors.isDark ? '#000' : '#000',
       shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.3,
+      shadowOpacity: colors.isDark ? 0.3 : 0.1,
       shadowRadius: 4,
-      elevation: 3,
+      elevation: colors.isDark ? 3 : 2,
     },
   },
 
   cardSolid: {
-    backgroundColor: COLORS.surface,
+    backgroundColor: colors.surface,
     borderRadius: BORDER_RADIUS.lg,
     borderWidth: 0,
     ...{
-      shadowColor: '#000',
+      shadowColor: colors.isDark ? '#000' : '#000',
       shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.3,
+      shadowOpacity: colors.isDark ? 0.3 : 0.1,
       shadowRadius: 4,
-      elevation: 3,
+      elevation: colors.isDark ? 3 : 2,
     },
   },
 
   cardPrimary: {
-    backgroundColor: COLORS.surface,
+    backgroundColor: colors.surface,
     borderRadius: BORDER_RADIUS.lg,
     borderWidth: 1,
-    borderColor: COLORS.primary,
+    borderColor: colors.primary,
     ...{
-      shadowColor: COLORS.primary,
+      shadowColor: colors.primary,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.4,
       shadowRadius: 8,
@@ -55,14 +57,14 @@ export const auroraStyles = StyleSheet.create({
 
   // Button Styles
   buttonPrimary: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: colors.primary,
     borderRadius: BORDER_RADIUS.md,
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.lg,
     alignItems: 'center',
     justifyContent: 'center',
     ...{
-      shadowColor: COLORS.primary,
+      shadowColor: colors.primary,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.3,
       shadowRadius: 4,
@@ -71,7 +73,7 @@ export const auroraStyles = StyleSheet.create({
   },
 
   buttonSecondary: {
-    backgroundColor: COLORS.secondary,
+    backgroundColor: colors.secondary,
     borderRadius: BORDER_RADIUS.md,
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.lg,
@@ -83,7 +85,7 @@ export const auroraStyles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderRadius: BORDER_RADIUS.md,
     borderWidth: 1,
-    borderColor: COLORS.primary,
+    borderColor: colors.primary,
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.lg,
     alignItems: 'center',
@@ -92,52 +94,52 @@ export const auroraStyles = StyleSheet.create({
 
   // Input Styles
   input: {
-    backgroundColor: COLORS.surface,
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: COLORS.divider,
+    borderColor: colors.divider,
     borderRadius: BORDER_RADIUS.md,
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.sm,
-    color: COLORS.text,
+    color: colors.text,
     fontSize: FONT_SIZES.md,
   },
 
   // Header Styles
   headerSolid: {
-    backgroundColor: COLORS.surface,
+    backgroundColor: colors.surface,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.divider,
+    borderBottomColor: colors.divider,
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.md,
   },
 
   headerTransparent: {
-    backgroundColor: 'rgba(43, 40, 41, 0.95)',
+    backgroundColor: colors.isDark ? 'rgba(43, 40, 41, 0.95)' : 'rgba(248, 248, 248, 0.95)',
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.divider,
+    borderBottomColor: colors.divider,
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.md,
   },
 
   // Text Styles
   textPrimary: {
-    color: COLORS.primary,
+    color: colors.primary,
     fontSize: FONT_SIZES.md,
     fontWeight: FONT_WEIGHTS.semibold,
   },
 
   textSecondary: {
-    color: COLORS.textSecondary,
+    color: colors.textSecondary,
     fontSize: FONT_SIZES.md,
   },
 
   textMuted: {
-    color: COLORS.textSecondary,
+    color: colors.textSecondary,
     fontSize: FONT_SIZES.sm,
   },
 
   textLarge: {
-    color: COLORS.text,
+    color: colors.text,
     fontSize: FONT_SIZES.xl,
     fontWeight: FONT_WEIGHTS.bold,
   },
@@ -190,7 +192,7 @@ export const auroraStyles = StyleSheet.create({
 
   // Special Effects
   glowPrimary: {
-    shadowColor: COLORS.primary,
+    shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.4,
     shadowRadius: 12,
@@ -199,59 +201,68 @@ export const auroraStyles = StyleSheet.create({
 
   // Screen-specific styles
   screenHeader: {
-    backgroundColor: COLORS.surface,
+    backgroundColor: colors.surface,
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.lg,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.divider,
+    borderBottomColor: colors.divider,
   },
 
   screenTitle: {
     fontSize: FONT_SIZES.xxl,
-    color: COLORS.text,
+    color: colors.text,
     fontWeight: FONT_WEIGHTS.bold,
   },
 
   screenSubtitle: {
     fontSize: FONT_SIZES.md,
-    color: COLORS.textSecondary,
+    color: colors.textSecondary,
     marginTop: 4,
   },
 });
 
+// Hook to get theme-aware styles
+export const useAuroraStyles = () => {
+  const { colors } = useTheme();
+  return createAuroraStyles(colors);
+};
+
 // Helper functions for dynamic styles
-export const getCardStyle = (variant: 'default' | 'solid' | 'primary' = 'default'): ViewStyle => {
+export const getCardStyle = (colors: any, variant: 'default' | 'solid' | 'primary' = 'default'): ViewStyle => {
+  const styles = createAuroraStyles(colors);
   switch (variant) {
     case 'solid':
-      return auroraStyles.cardSolid;
+      return styles.cardSolid;
     case 'primary':
-      return auroraStyles.cardPrimary;
+      return styles.cardPrimary;
     default:
-      return auroraStyles.card;
+      return styles.card;
   }
 };
 
-export const getButtonStyle = (variant: 'primary' | 'secondary' | 'outline' = 'primary'): ViewStyle => {
+export const getButtonStyle = (colors: any, variant: 'primary' | 'secondary' | 'outline' = 'primary'): ViewStyle => {
+  const styles = createAuroraStyles(colors);
   switch (variant) {
     case 'secondary':
-      return auroraStyles.buttonSecondary;
+      return styles.buttonSecondary;
     case 'outline':
-      return auroraStyles.buttonOutline;
+      return styles.buttonOutline;
     default:
-      return auroraStyles.buttonPrimary;
+      return styles.buttonPrimary;
   }
 };
 
-export const getTextStyle = (variant: 'primary' | 'secondary' | 'muted' | 'large' = 'primary'): TextStyle => {
+export const getTextStyle = (colors: any, variant: 'primary' | 'secondary' | 'muted' | 'large' = 'primary'): TextStyle => {
+  const styles = createAuroraStyles(colors);
   switch (variant) {
     case 'secondary':
-      return auroraStyles.textSecondary;
+      return styles.textSecondary;
     case 'muted':
-      return auroraStyles.textMuted;
+      return styles.textMuted;
     case 'large':
-      return auroraStyles.textLarge;
+      return styles.textLarge;
     default:
-      return auroraStyles.textPrimary;
+      return styles.textPrimary;
   }
 };
 

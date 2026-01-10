@@ -4,9 +4,49 @@
 
 @layer base {
 
-  /* Ace Ticket Dark Theme - Aurora-UI Inspired (Forced Dark) */
+  /* Ace Ticket Light Theme - Aurora-UI Inspired */
   :root {
-    /* Dark backgrounds by default */
+    /* Light backgrounds by default */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    /* Light card surfaces */
+    --card: 0 0% 97%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 97%;
+    --popover-foreground: 0 0% 0%;
+
+    /* Ace Ticket Red - Primary */
+    --primary: 358 75% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Deep Red - Secondary */
+    --secondary: 358 72% 41%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Light gray muted tones */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent uses primary red */
+    --accent: 358 75% 47%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Subtle borders for light theme */
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 358 75% 47%;
+
+    --radius: 0.5rem;
+  }
+
+  /* Ace Ticket Dark Theme - Aurora-UI Inspired */
+  .dark {
+    /* Dark backgrounds */
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 

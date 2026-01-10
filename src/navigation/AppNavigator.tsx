@@ -123,23 +123,28 @@ const MoreStack = () => (
   </Stack.Navigator>
 );
 
-// React Navigation Dark Theme
-const AceDarkTheme = {
-  dark: true,
+import { useTheme } from '../contexts/ThemeContext';
+
+// React Navigation Themes
+const createNavigationTheme = (colors: any, isDark: boolean) => ({
+  dark: isDark,
   colors: {
-    primary: COLORS.primary,
-    background: COLORS.background,
-    card: COLORS.surface,
-    text: COLORS.text,
-    border: COLORS.divider,
-    notification: COLORS.primary,
+    primary: colors.primary,
+    background: colors.background,
+    card: colors.surface,
+    text: colors.text,
+    border: colors.divider,
+    notification: colors.primary,
   },
-};
+});
 
 // Main Tab Navigator
 const AppNavigator: React.FC = () => {
+  const { colors, isDark } = useTheme();
+  const navigationTheme = createNavigationTheme(colors, isDark);
+
   return (
-    <NavigationContainer theme={AceDarkTheme}>
+    <NavigationContainer theme={navigationTheme}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,

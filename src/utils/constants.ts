@@ -1,13 +1,61 @@
-export const COLORS = {
+// Light Theme Colors
+export const LIGHT_COLORS = {
+  // Ace Ticket Brand Colors (Light Theme)
+  aceRed: '#d12026',        // Primary brand red (same)
+  aceDeepRed: '#b21e23',    // Deep red for accents (same)
+  white: '#FFFFFF',         // Backgrounds
+  black: '#000000',         // Primary text
+  lightGray: '#F8F8F8',     // Card/surface backgrounds
+  mediumGray: '#E5E5E5',    // Subtle surfaces
+  darkGray: '#666666',      // Secondary text
+  mutedGray: '#9b9a9a',     // Muted elements
+
+  // Semantic mappings - Light Theme
+  primary: '#d12026',       // Ace Red as primary (same)
+  primaryLight: '#fef2f2',  // Light red tint for backgrounds
+  secondary: '#b21e23',     // Deep Red (same)
+  background: '#FFFFFF',    // Pure white background
+  surface: '#F8F8F8',       // Light gray surfaces
+  text: '#000000',          // Black text
+  textSecondary: '#666666', // Dark gray secondary text
+  textDisabled: '#CCCCCC',  // Light disabled text
+  divider: '#E5E5E5',       // Subtle light dividers
+  error: '#d12026',         // Using brand red for errors
+  success: '#22c55e',       // Green for success
+  warning: '#f59e0b',       // Amber for warnings
+
+  // Track colors - alternating reds and light grays
+  mlb: '#d12026',
+  nhl: '#b21e23',
+  nba: '#d12026',
+  nfl: '#b21e23',
+  ncaa: '#d12026',
+  concerts: '#b21e23',
+  theater: '#d12026',
+  comedy: '#b21e23',
+  festivals: '#d12026',
+  wrestling: '#b21e23',
+  mma: '#d12026',
+  ufc: '#b21e23',
+  soccer: '#d12026',
+  golf: '#b21e23',
+  tennis: '#d12026',
+  racing: '#b21e23'
+};
+
+// Dark Theme Colors (Current)
+export const DARK_COLORS = {
   // Ace Ticket Brand Colors (Dark Theme)
   aceRed: '#d12026',        // Primary brand red
   aceDeepRed: '#b21e23',    // Deep red for accents
   white: '#FFFFFF',         // Light text on dark
   black: '#000000',         // Dark backgrounds
-  charcoal: '#2b2829',      // Card/surface backgrounds
-  gray: '#9b9a9a',          // Muted text
+  lightGray: '#2b2829',     // Card/surface backgrounds (charcoal)
+  mediumGray: '#3a3a3a',    // Subtle surfaces (divider)
+  darkGray: '#4a4a4a',      // Secondary text (textDisabled)
+  mutedGray: '#9b9a9a',     // Muted elements (gray)
 
-  // Semantic mappings - Dark Theme First
+  // Semantic mappings - Dark Theme
   primary: '#d12026',       // Ace Red as primary
   primaryLight: '#3d1f20',  // Dark red tint for backgrounds
   secondary: '#b21e23',     // Deep Red
@@ -39,6 +87,9 @@ export const COLORS = {
   tennis: '#d12026',
   racing: '#b21e23'
 };
+
+// Default to dark theme for backward compatibility
+export const COLORS = DARK_COLORS;
 
 export const SPACING = {
   xs: 4,

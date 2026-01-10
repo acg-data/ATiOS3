@@ -14,6 +14,7 @@ export interface UserPreferences {
   favoriteTeams: string[];
   preferredVenues: string[];
   reminderTime: number; // minutes before event
+  theme: 'light' | 'dark';
 }
 
 export interface AuthState {
