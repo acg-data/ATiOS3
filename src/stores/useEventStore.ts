@@ -34,15 +34,26 @@ export const useEventStore = create<EventState>((set, get) => ({
     try {
       const events = await MockDataService.getEvents();
       const favorites = await get().favorites;
-      
+
       const eventsWithFavorites = events.map(event => ({
         ...event,
         favorite: favorites.includes(event.id)
       }));
-      
+
+      // Filter out past events and sort by date ascending
+      const now = new Date();
+      const upcomingEvents = eventsWithFavorites.filter(event => {
+        const eventDate = new Date(event.startDateTime);
+        return eventDate >= now;
+      });
+
+      const sortedEvents = upcomingEvents.sort((a, b) =>
+        new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime()
+      );
+
       set({
-        events: eventsWithFavorites,
-        filteredEvents: eventsWithFavorites,
+        events: sortedEvents,
+        filteredEvents: sortedEvents,
         isLoading: false
       });
     } catch (error) {
@@ -74,14 +85,14 @@ export const useEventStore = create<EventState>((set, get) => ({
   setFilters: (filters: EventFilters) => {
     const { events } = get();
     let filtered = [...events];
-    
+
     // Filter by track IDs
     if (filters.trackIds && filters.trackIds.length > 0) {
       filtered = filtered.filter(event =>
         filters.trackIds!.includes(event.trackCode)
       );
     }
-    
+
     // Filter by search query
     if (filters.searchQuery && filters.searchQuery.trim() !== '') {
       const query = filters.searchQuery.toLowerCase();
@@ -91,7 +102,7 @@ export const useEventStore = create<EventState>((set, get) => ({
         event.location.toLowerCase().includes(query)
       );
     }
-    
+
     // Filter by date
     if (filters.date) {
       filtered = filtered.filter(event => {
@@ -99,12 +110,22 @@ export const useEventStore = create<EventState>((set, get) => ({
         return eventDate.toDateString() === filters.date!.toDateString();
       });
     }
-    
+
+    // Always sort by date ascending (upcoming events first)
+    filtered = filtered.sort((a, b) =>
+      new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime()
+    );
+
     set({ filters, filteredEvents: filtered });
   },
   
   clearFilters: () => {
-    set({ filters: {}, filteredEvents: get().events });
+    const { events } = get();
+    // Sort events by date when clearing filters
+    const sortedEvents = [...events].sort((a, b) =>
+      new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime()
+    );
+    set({ filters: {}, filteredEvents: sortedEvents });
   },
   
   searchEvents: async (query: string) => {
