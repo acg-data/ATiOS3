@@ -40,16 +40,25 @@ export const useEventStore = create<EventState>((set, get) => ({
         favorite: favorites.includes(event.id)
       }));
 
-      // Filter out past events and sort by date ascending
+      // Filter out past events and sort by date ascending (primary), then by sport (secondary)
       const now = new Date();
       const upcomingEvents = eventsWithFavorites.filter(event => {
         const eventDate = new Date(event.startDateTime);
         return eventDate >= now;
       });
 
-      const sortedEvents = upcomingEvents.sort((a, b) =>
-        new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime()
-      );
+      const sortedEvents = upcomingEvents.sort((a, b) => {
+        // Primary sort: date ascending
+        const dateA = new Date(a.startDateTime).getTime();
+        const dateB = new Date(b.startDateTime).getTime();
+
+        if (dateA !== dateB) {
+          return dateA - dateB;
+        }
+
+        // Secondary sort: sport (trackCode) ascending for same dates
+        return a.trackCode - b.trackCode;
+      });
 
       set({
         events: sortedEvents,
@@ -111,20 +120,38 @@ export const useEventStore = create<EventState>((set, get) => ({
       });
     }
 
-    // Always sort by date ascending (upcoming events first)
-    filtered = filtered.sort((a, b) =>
-      new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime()
-    );
+    // Always sort by date ascending (primary), then by sport (secondary)
+    filtered = filtered.sort((a, b) => {
+      // Primary sort: date ascending
+      const dateA = new Date(a.startDateTime).getTime();
+      const dateB = new Date(b.startDateTime).getTime();
+
+      if (dateA !== dateB) {
+        return dateA - dateB;
+      }
+
+      // Secondary sort: sport (trackCode) ascending for same dates
+      return a.trackCode - b.trackCode;
+    });
 
     set({ filters, filteredEvents: filtered });
   },
   
   clearFilters: () => {
     const { events } = get();
-    // Sort events by date when clearing filters
-    const sortedEvents = [...events].sort((a, b) =>
-      new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime()
-    );
+    // Sort events by date (primary), then by sport (secondary) when clearing filters
+    const sortedEvents = [...events].sort((a, b) => {
+      // Primary sort: date ascending
+      const dateA = new Date(a.startDateTime).getTime();
+      const dateB = new Date(b.startDateTime).getTime();
+
+      if (dateA !== dateB) {
+        return dateA - dateB;
+      }
+
+      // Secondary sort: sport (trackCode) ascending for same dates
+      return a.trackCode - b.trackCode;
+    });
     set({ filters: {}, filteredEvents: sortedEvents });
   },
   
