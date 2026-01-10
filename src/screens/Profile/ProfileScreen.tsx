@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { useUserStore } from '../../stores';
 import { Button } from '../../components/common';
-import ThemeToggle from '../../components/common/ThemeToggle';
 import { COLORS, SPACING, FONT_SIZES, APP_CONFIG } from '../../utils/constants';
 
 const ProfileScreen: React.FC = () => {
@@ -60,13 +59,6 @@ const ProfileScreen: React.FC = () => {
           <MenuItem title="Payment Methods" onPress={() => {}} />
           <MenuItem title="Order History" onPress={() => {}} />
           <MenuItem title="Notifications" onPress={() => {}} />
-
-          {/* Theme Toggle */}
-          <View style={styles.themeToggleContainer}>
-            <Text style={styles.themeToggleLabel}>Theme</Text>
-            <ThemeToggle showLabel={true} />
-          </View>
-
           <MenuItem title="Help & Support" onPress={() => {}} />
           <MenuItem title="About Ace Ticket" onPress={() => {}} />
         </View>
@@ -299,19 +291,6 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZES.sm,
     color: COLORS.textSecondary,
     marginTop: SPACING.lg
-  },
-  themeToggleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: SPACING.md,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.divider
-  },
-  themeToggleLabel: {
-    fontSize: FONT_SIZES.md,
-    color: COLORS.text,
-    fontWeight: '500' as const
   }
 });
 

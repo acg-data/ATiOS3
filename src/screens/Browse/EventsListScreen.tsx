@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '../../components/ui/badge';
 import { Button } from '../../components/ui/button';
 import { EmptyState, LoadingSpinner } from '../../components/common';
+import ThemeToggle from '../../components/common/ThemeToggle';
 import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS, BORDER_RADIUS } from '../../utils/constants';
 
 const EventsListScreen: React.FC = () => {
@@ -99,17 +100,20 @@ const EventsListScreen: React.FC = () => {
     <View style={styles.container}>
       {/* Floating Glass Header */}
       <View style={styles.header}>
-        <View style={styles.searchBar}>
-          <Ionicons name="search" size={20} color={COLORS.textSecondary} />
-          <TextInput
-            placeholder="Search events, teams..."
-            style={styles.searchInput}
-            placeholderTextColor={COLORS.textSecondary}
-            onChangeText={(text) => setFilters({ searchQuery: text })}
-          />
-          <View style={styles.searchAvatar}>
-            <Text style={styles.searchAvatarText}>J</Text>
+        <View style={styles.headerRow}>
+          <View style={styles.searchBar}>
+            <Ionicons name="search" size={20} color={COLORS.textSecondary} />
+            <TextInput
+              placeholder="Search events, teams..."
+              style={styles.searchInput}
+              placeholderTextColor={COLORS.textSecondary}
+              onChangeText={(text) => setFilters({ searchQuery: text })}
+            />
+            <View style={styles.searchAvatar}>
+              <Text style={styles.searchAvatarText}>J</Text>
+            </View>
           </View>
+          <ThemeToggle showLabel={false} size="medium" />
         </View>
       </View>
 
@@ -143,6 +147,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: COLORS.divider,
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -152,6 +161,8 @@ const styles = StyleSheet.create({
     borderRadius: BORDER_RADIUS.round,
     height: 48,
     paddingHorizontal: SPACING.md,
+    flex: 1,
+    marginRight: SPACING.md,
   },
   searchInput: {
     flex: 1,
