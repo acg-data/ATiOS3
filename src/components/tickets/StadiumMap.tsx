@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Svg, { Path, G, Rect } from 'react-native-svg';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS, BORDER_RADIUS } from '../../utils/constants';
 
 interface StadiumMapProps {
     onSectionSelect: (section: string | null) => void;
@@ -26,8 +27,8 @@ const StadiumMap: React.FC<StadiumMapProps> = ({ onSectionSelect, selectedSectio
     };
 
     return (
-        <View className="items-center justify-center bg-muted/10 rounded-3xl p-4 border border-border/50">
-            <View className="w-full aspect-square max-h-[300px]">
+        <View style={styles.container}>
+            <View style={styles.mapContainer}>
                 <Svg viewBox="0 0 200 200" width="100%" height="100%">
                     {/* Background Field/Court */}
                     <Rect x="60" y="80" width="80" height="40" fill="#fef3c7" rx="2" opacity={0.3} />
@@ -47,18 +48,20 @@ const StadiumMap: React.FC<StadiumMapProps> = ({ onSectionSelect, selectedSectio
             </View>
 
             {/* Legend */}
-            <View className="flex-row flex-wrap justify-center mt-4 gap-2">
+            <View style={styles.legend}>
                 {sections.map((section) => (
                     <TouchableOpacity
                         key={section.id}
                         onPress={() => handlePress(section.id)}
-                        className={`px-3 py-1 rounded-full border ${selectedSection === section.id
-                            ? 'bg-primary border-primary'
-                            : 'bg-card border-border'
-                            }`}
+                        style={[
+                            styles.legendButton,
+                            selectedSection === section.id && styles.legendButtonSelected
+                        ]}
                     >
-                        <Text className={`text-[10px] font-bold ${selectedSection === section.id ? 'text-primary-foreground' : 'text-muted-foreground'
-                            }`}>
+                        <Text style={[
+                            styles.legendText,
+                            selectedSection === section.id && styles.legendTextSelected
+                        ]}>
                             {section.label}
                         </Text>
                     </TouchableOpacity>
@@ -66,14 +69,71 @@ const StadiumMap: React.FC<StadiumMapProps> = ({ onSectionSelect, selectedSectio
                 {selectedSection && (
                     <TouchableOpacity
                         onPress={() => onSectionSelect(null)}
-                        className="px-3 py-1 rounded-full bg-destructive/10 border border-destructive/20"
+                        style={styles.clearButton}
                     >
-                        <Text className="text-[10px] font-bold text-destructive">Clear Filter</Text>
+                        <Text style={styles.clearText}>Clear Filter</Text>
                     </TouchableOpacity>
                 )}
             </View>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(155, 154, 154, 0.1)',
+        borderRadius: 24,
+        padding: SPACING.md,
+        borderWidth: 1,
+        borderColor: COLORS.divider,
+    },
+    mapContainer: {
+        width: '100%',
+        aspectRatio: 1,
+        maxHeight: 300,
+    },
+    legend: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        marginTop: SPACING.lg,
+        gap: SPACING.xs,
+    },
+    legendButton: {
+        paddingHorizontal: SPACING.md,
+        paddingVertical: SPACING.xs,
+        borderRadius: BORDER_RADIUS.round,
+        borderWidth: 1,
+        borderColor: COLORS.divider,
+        backgroundColor: COLORS.surface,
+    },
+    legendButtonSelected: {
+        backgroundColor: COLORS.primary,
+        borderColor: COLORS.primary,
+    },
+    legendText: {
+        fontSize: 10,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.textSecondary,
+    },
+    legendTextSelected: {
+        color: COLORS.white,
+    },
+    clearButton: {
+        paddingHorizontal: SPACING.md,
+        paddingVertical: SPACING.xs,
+        borderRadius: BORDER_RADIUS.round,
+        backgroundColor: 'rgba(209, 18, 38, 0.1)',
+        borderWidth: 1,
+        borderColor: 'rgba(209, 18, 38, 0.2)',
+    },
+    clearText: {
+        fontSize: 10,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.error,
+    },
+});
 
 export default StadiumMap;

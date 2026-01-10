@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,6 +9,7 @@ import MockDataService from '../../services/mockDataService';
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import StadiumMap from '../../components/tickets/StadiumMap';
+import { COLORS, SPACING, FONT_SIZES, FONT_WEIGHTS, BORDER_RADIUS } from '../../utils/constants';
 
 type EventDetailRouteProp = RouteProp<{ EventDetail: { eventId: string } }, 'EventDetail'>;
 
@@ -50,7 +51,7 @@ const EventDetailScreen: React.FC = () => {
         setSelectedTicketId(null); // Reset selection when filter changes
     }, [selectedSection, allTickets]);
 
-    if (!event) return <View className="flex-1 bg-background" />;
+    if (!event) return <View style={styles.errorContainer} />;
 
     const handleBuy = () => {
         if (!selectedTicketId) {
@@ -64,40 +65,40 @@ const EventDetailScreen: React.FC = () => {
     const selectedTicket = allTickets.find(t => t.id === selectedTicketId);
 
     return (
-        <View className="flex-1 bg-background">
-            <ScrollView contentContainerStyle={{ paddingBottom: 140 }}>
+        <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.scrollContent}>
                 {/* Header Image */}
-                <View className="h-[300px] relative">
+                <View style={styles.heroContainer}>
                     <Image
                         source={{ uri: event.imageUrl }}
-                        className="absolute inset-0 w-full h-full"
+                        style={styles.heroImage}
                         resizeMode="cover"
                     />
                     <LinearGradient
                         colors={['transparent', 'rgba(0,0,0,0.8)']}
-                        className="absolute inset-0 w-full h-full"
+                        style={styles.heroGradient}
                     />
 
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        className="absolute top-12 left-4 w-10 h-10 bg-card/90 rounded-full items-center justify-center border border-border/30"
+                        style={styles.backButton}
                     >
-                        <Ionicons name="arrow-back" size={24} color="white" />
+                        <Ionicons name="arrow-back" size={24} color={COLORS.white} />
                     </TouchableOpacity>
 
-                    <View className="absolute bottom-6 left-6 right-6">
-                        <Text className="text-white/70 font-bold tracking-widest uppercase text-[10px] mb-1">
+                    <View style={styles.heroOverlay}>
+                        <Text style={styles.heroMeta}>
                             {event.location}
                         </Text>
-                        <Text className="text-3xl font-black text-white tracking-tighter leading-8">
+                        <Text style={styles.heroTitle}>
                             {event.title}
                         </Text>
                     </View>
                 </View>
 
                 {/* Stadium Map Section */}
-                <View className="px-5 mt-6">
-                    <Text className="text-lg font-black mb-3 ml-1">Interactive Stadium Map</Text>
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Interactive Stadium Map</Text>
                     <StadiumMap
                         selectedSection={selectedSection}
                         onSectionSelect={setSelectedSection}
@@ -105,35 +106,35 @@ const EventDetailScreen: React.FC = () => {
                 </View>
 
                 {/* Quantity Selector */}
-                <View className="px-5 mt-8 flex-row justify-between items-center bg-muted/20 mx-5 p-4 rounded-3xl border border-border/40">
-                    <View>
-                        <Text className="text-sm font-bold">Quantity</Text>
-                        <Text className="text-xs text-muted-foreground">{quantity} Seats Together</Text>
+                <View style={styles.quantityContainer}>
+                    <View style={styles.quantityInfo}>
+                        <Text style={styles.quantityLabel}>Quantity</Text>
+                        <Text style={styles.quantitySubtitle}>{quantity} Seats Together</Text>
                     </View>
-                    <View className="flex-row items-center bg-muted rounded-full border border-border">
+                    <View style={styles.quantityControls}>
                         <TouchableOpacity
                             onPress={() => setQuantity(Math.max(1, quantity - 1))}
-                            className="w-10 h-10 items-center justify-center"
+                            style={styles.quantityButton}
                         >
-                            <Ionicons name="remove" size={20} color={quantity > 1 ? "#fff" : "#4a4a4a"} />
+                            <Ionicons name="remove" size={20} color={quantity > 1 ? COLORS.white : COLORS.textDisabled} />
                         </TouchableOpacity>
-                        <Text className="w-8 text-center font-bold text-lg">{quantity}</Text>
+                        <Text style={styles.quantityText}>{quantity}</Text>
                         <TouchableOpacity
                             onPress={() => setQuantity(Math.min(10, quantity + 1))}
-                            className="w-10 h-10 items-center justify-center"
+                            style={styles.quantityButton}
                         >
-                            <Ionicons name="add" size={20} color="#fff" />
+                            <Ionicons name="add" size={20} color={COLORS.white} />
                         </TouchableOpacity>
                     </View>
                 </View>
 
                 {/* Ticket Selection List */}
-                <View className="px-5 mt-8">
-                    <View className="flex-row justify-between items-end mb-4 px-1">
-                        <Text className="text-xl font-black">
+                <View style={styles.section}>
+                    <View style={styles.ticketHeader}>
+                        <Text style={styles.ticketTitle}>
                             {selectedSection ? `Tickets in ${selectedSection.replace('_', ' ')}` : 'All Available Tickets'}
                         </Text>
-                        <Text className="text-xs font-bold text-primary">{filteredTickets.length} found</Text>
+                        <Text style={styles.ticketCount}>{filteredTickets.length} found</Text>
                     </View>
 
                     {filteredTickets.map((t) => (
@@ -141,31 +142,43 @@ const EventDetailScreen: React.FC = () => {
                             key={t.id}
                             onPress={() => setSelectedTicketId(t.id)}
                             activeOpacity={0.8}
-                            className={`mb-4 rounded-[32px] p-5 border shadow-sm flex-row justify-between items-center ${selectedTicketId === t.id
-                                ? 'bg-primary border-primary shadow-primary/20'
-                                : 'bg-card border-border/50'
-                                }`}
+                            style={[
+                                styles.ticketCard,
+                                selectedTicketId === t.id && styles.ticketCardSelected
+                            ]}
                         >
-                            <View className="flex-1">
-                                <View className="flex-row items-center mb-1">
-                                    <Text className={`font-bold text-lg ${selectedTicketId === t.id ? 'text-primary-foreground' : 'text-foreground'}`}>
+                            <View style={styles.ticketCardLeft}>
+                                <View style={styles.ticketCardRow}>
+                                    <Text style={[
+                                        styles.ticketSection,
+                                        selectedTicketId === t.id && styles.ticketTextSelected
+                                    ]}>
                                         {t.section}
                                     </Text>
                                     {t.type === 'VIP' && (
-                                        <View className="ml-2 bg-amber-400 px-2 py-0.5 rounded-md">
-                                            <Text className="text-[8px] font-black text-amber-900">VIP</Text>
+                                        <View style={styles.vipBadge}>
+                                            <Text style={styles.vipText}>VIP</Text>
                                         </View>
                                     )}
                                 </View>
-                                <Text className={`text-xs font-medium opacity-70 ${selectedTicketId === t.id ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
+                                <Text style={[
+                                    styles.ticketDetails,
+                                    selectedTicketId === t.id && styles.ticketTextSelected
+                                ]}>
                                     Row {t.row} • Instant Delivery
                                 </Text>
                             </View>
-                            <View className="items-end">
-                                <Text className={`font-black text-xl ${selectedTicketId === t.id ? 'text-primary-foreground' : 'text-foreground'}`}>
+                            <View style={styles.ticketCardRight}>
+                                <Text style={[
+                                    styles.ticketPrice,
+                                    selectedTicketId === t.id && styles.ticketTextSelected
+                                ]}>
                                     ${t.price}
                                 </Text>
-                                <Text className={`text-[10px] font-bold uppercase opacity-60 ${selectedTicketId === t.id ? 'text-primary-foreground' : 'text-muted-foreground'}`}>
+                                <Text style={[
+                                    styles.ticketPerTicket,
+                                    selectedTicketId === t.id && styles.ticketTextSelected
+                                ]}>
                                     per ticket
                                 </Text>
                             </View>
@@ -173,42 +186,305 @@ const EventDetailScreen: React.FC = () => {
                     ))}
 
                     {filteredTickets.length === 0 && !loading && (
-                        <View className="py-10 items-center">
-                            <Ionicons name="search-outline" size={48} color="#cbd5e1" />
-                            <Text className="text-muted-foreground font-medium mt-2">No tickets found in this section</Text>
+                        <View style={styles.emptyState}>
+                            <Ionicons name="search-outline" size={48} color={COLORS.textSecondary} />
+                            <Text style={styles.emptyText}>No tickets found in this section</Text>
                         </View>
                     )}
                 </View>
             </ScrollView>
 
             {/* Sticky Bottom Bar */}
-            <View className="absolute bottom-0 left-0 right-0 p-6 bg-card/95 border-t border-border/30">
-                <View className="flex-row justify-between items-center mb-4 px-2">
+            <View style={styles.bottomBar}>
+                <View style={styles.bottomBarContent}>
                     <View>
-                        <Text className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Total Amount</Text>
-                        <Text className="text-2xl font-black text-foreground">
+                        <Text style={styles.bottomBarLabel}>Total Amount</Text>
+                        <Text style={styles.bottomBarTotal}>
                             ${selectedTicket ? (selectedTicket.price * quantity) : '0'}
                         </Text>
                     </View>
                     {selectedTicket && (
-                        <Text className="text-xs font-bold text-muted-foreground">
+                        <Text style={styles.bottomBarBreakdown}>
                             {quantity} x ${selectedTicket.price}
                         </Text>
                     )}
                 </View>
                 <Button
                     size="lg"
-                    className="w-full rounded-full h-14 shadow-xl shadow-primary/30"
+                    label={selectedTicketId ? 'Confirm Selection' : 'Select a Ticket'}
+                    style={styles.purchaseButton}
                     onPress={handleBuy}
                     disabled={!selectedTicketId}
-                >
-                    <Text className="font-extrabold text-lg text-primary-foreground">
-                        {selectedTicketId ? 'Confirm Selection' : 'Select a Ticket'}
-                    </Text>
-                </Button>
+                />
             </View>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: COLORS.background,
+    },
+    errorContainer: {
+        flex: 1,
+        backgroundColor: COLORS.background,
+    },
+    scrollContent: {
+        paddingBottom: 140,
+    },
+    heroContainer: {
+        height: 300,
+        position: 'relative',
+    },
+    heroImage: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
+    heroGradient: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
+    backButton: {
+        position: 'absolute',
+        top: 50,
+        left: SPACING.md,
+        width: 40,
+        height: 40,
+        backgroundColor: 'rgba(43, 40, 41, 0.9)',
+        borderRadius: BORDER_RADIUS.round,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: COLORS.divider,
+    },
+    heroOverlay: {
+        position: 'absolute',
+        bottom: SPACING.lg,
+        left: SPACING.lg,
+        right: SPACING.lg,
+    },
+    heroMeta: {
+        fontSize: 10,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: 'rgba(255, 255, 255, 0.7)',
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
+        marginBottom: SPACING.xs,
+    },
+    heroTitle: {
+        fontSize: 30,
+        fontWeight: '900',
+        color: COLORS.white,
+        lineHeight: 32,
+    },
+    section: {
+        paddingHorizontal: SPACING.lg,
+        marginTop: SPACING.xl,
+    },
+    sectionTitle: {
+        fontSize: FONT_SIZES.lg,
+        fontWeight: '900',
+        marginBottom: SPACING.sm,
+        marginLeft: SPACING.xs,
+    },
+    quantityContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: 'rgba(155, 154, 154, 0.2)',
+        marginHorizontal: SPACING.lg,
+        marginTop: SPACING.xl,
+        padding: SPACING.lg,
+        borderRadius: 24,
+        borderWidth: 1,
+        borderColor: COLORS.divider,
+    },
+    quantityInfo: {
+        flex: 1,
+    },
+    quantityLabel: {
+        fontSize: FONT_SIZES.md,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.text,
+    },
+    quantitySubtitle: {
+        fontSize: FONT_SIZES.xs,
+        color: COLORS.textSecondary,
+        marginTop: 2,
+    },
+    quantityControls: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: COLORS.surface,
+        borderRadius: BORDER_RADIUS.round,
+        borderWidth: 1,
+        borderColor: COLORS.divider,
+    },
+    quantityButton: {
+        width: 40,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    quantityText: {
+        width: 32,
+        textAlign: 'center',
+        fontSize: FONT_SIZES.lg,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.text,
+    },
+    ticketHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        marginBottom: SPACING.lg,
+        paddingLeft: SPACING.xs,
+    },
+    ticketTitle: {
+        fontSize: FONT_SIZES.xl,
+        fontWeight: '900',
+        color: COLORS.text,
+    },
+    ticketCount: {
+        fontSize: FONT_SIZES.xs,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.primary,
+    },
+    ticketCard: {
+        marginBottom: SPACING.lg,
+        borderRadius: 32,
+        padding: SPACING.lg,
+        borderWidth: 1,
+        borderColor: COLORS.divider,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: COLORS.surface,
+        ...{
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.3,
+            shadowRadius: 4,
+            elevation: 3,
+        },
+    },
+    ticketCardSelected: {
+        backgroundColor: COLORS.primary,
+        borderColor: COLORS.primary,
+        shadowColor: COLORS.primary,
+        shadowOpacity: 0.4,
+        shadowRadius: 8,
+        elevation: 6,
+    },
+    ticketCardLeft: {
+        flex: 1,
+    },
+    ticketCardRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: SPACING.xs,
+    },
+    ticketSection: {
+        fontSize: FONT_SIZES.lg,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.text,
+    },
+    ticketTextSelected: {
+        color: COLORS.white,
+    },
+    vipBadge: {
+        marginLeft: SPACING.sm,
+        backgroundColor: '#fbbf24',
+        paddingHorizontal: SPACING.sm,
+        paddingVertical: 2,
+        borderRadius: 6,
+    },
+    vipText: {
+        fontSize: 8,
+        fontWeight: '900',
+        color: '#92400e',
+    },
+    ticketDetails: {
+        fontSize: FONT_SIZES.xs,
+        fontWeight: FONT_WEIGHTS.medium,
+        color: COLORS.textSecondary,
+        opacity: 0.7,
+    },
+    ticketCardRight: {
+        alignItems: 'flex-end',
+    },
+    ticketPrice: {
+        fontSize: FONT_SIZES.xl,
+        fontWeight: '900',
+        color: COLORS.text,
+    },
+    ticketPerTicket: {
+        fontSize: 10,
+        fontWeight: FONT_WEIGHTS.bold,
+        textTransform: 'uppercase',
+        color: COLORS.textSecondary,
+        opacity: 0.6,
+    },
+    emptyState: {
+        paddingVertical: SPACING.xl,
+        alignItems: 'center',
+    },
+    emptyText: {
+        color: COLORS.textSecondary,
+        fontWeight: FONT_WEIGHTS.medium,
+        marginTop: SPACING.sm,
+    },
+    bottomBar: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: SPACING.lg,
+        backgroundColor: 'rgba(43, 40, 41, 0.95)',
+        borderTopWidth: 1,
+        borderTopColor: COLORS.divider,
+    },
+    bottomBarContent: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: SPACING.lg,
+        paddingHorizontal: SPACING.xs,
+    },
+    bottomBarLabel: {
+        fontSize: FONT_SIZES.xs,
+        color: COLORS.textSecondary,
+        fontWeight: FONT_WEIGHTS.bold,
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
+    },
+    bottomBarTotal: {
+        fontSize: FONT_SIZES.xl,
+        fontWeight: '900',
+        color: COLORS.text,
+    },
+    bottomBarBreakdown: {
+        fontSize: FONT_SIZES.xs,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.textSecondary,
+    },
+    purchaseButton: {
+        width: '100%',
+        height: 56,
+        borderRadius: BORDER_RADIUS.round,
+        shadowColor: COLORS.primary,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 12,
+        elevation: 8,
+    },
+});
 
 export default EventDetailScreen;
