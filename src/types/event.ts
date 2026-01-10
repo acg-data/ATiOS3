@@ -26,22 +26,22 @@ export interface TrackInfo {
 }
 
 export const TRACKS: TrackInfo[] = [
-  { id: Track.MLB, name: 'MLB', color: '#3862FA', icon: 'baseball' },
-  { id: Track.NHL, name: 'NHL', color: '#DD0000', icon: 'hockey-stick' },
-  { id: Track.NBA, name: 'NBA', color: '#3862FA', icon: 'basketball' },
-  { id: Track.NFL, name: 'NFL', color: '#DD0000', icon: 'football' },
-  { id: Track.NCAA, name: 'NCAA', color: '#3862FA', icon: 'graduation-cap' },
-  { id: Track.Concerts, name: 'Concerts', color: '#DD0000', icon: 'music' },
-  { id: Track.Theater, name: 'Theater', color: '#3862FA', icon: 'theater-masks' },
-  { id: Track.Comedy, name: 'Comedy', color: '#DD0000', icon: 'face-laugh' },
-  { id: Track.Festivals, name: 'Festivals', color: '#3862FA', icon: 'party-popper' },
-  { id: Track.Wrestling, name: 'WWE', color: '#DD0000', icon: 'boxing-glove' },
-  { id: Track.MMA, name: 'MMA', color: '#3862FA', icon: 'hand-fist' },
-  { id: Track.UFC, name: 'UFC', color: '#DD0000', icon: 'hand-fist' },
-  { id: Track.Soccer, name: 'Soccer', color: '#3862FA', icon: 'soccer' },
-  { id: Track.Golf, name: 'Golf', color: '#DD0000', icon: 'golf' },
-  { id: Track.Tennis, name: 'Tennis', color: '#3862FA', icon: 'tennis' },
-  { id: Track.Racing, name: 'Racing', color: '#DD0000', icon: 'car-fast' },
+  { id: Track.MLB, name: 'MLB', color: '#d12026', icon: 'baseball' },
+  { id: Track.NHL, name: 'NHL', color: '#b21e23', icon: 'hockey-stick' },
+  { id: Track.NBA, name: 'NBA', color: '#d12026', icon: 'basketball' },
+  { id: Track.NFL, name: 'NFL', color: '#b21e23', icon: 'football' },
+  { id: Track.NCAA, name: 'NCAA', color: '#d12026', icon: 'graduation-cap' },
+  { id: Track.Concerts, name: 'Concerts', color: '#b21e23', icon: 'music' },
+  { id: Track.Theater, name: 'Theater', color: '#d12026', icon: 'theater-masks' },
+  { id: Track.Comedy, name: 'Comedy', color: '#b21e23', icon: 'face-laugh' },
+  { id: Track.Festivals, name: 'Festivals', color: '#d12026', icon: 'party-popper' },
+  { id: Track.Wrestling, name: 'WWE', color: '#b21e23', icon: 'boxing-glove' },
+  { id: Track.MMA, name: 'MMA', color: '#d12026', icon: 'hand-fist' },
+  { id: Track.UFC, name: 'UFC', color: '#b21e23', icon: 'hand-fist' },
+  { id: Track.Soccer, name: 'Soccer', color: '#d12026', icon: 'soccer' },
+  { id: Track.Golf, name: 'Golf', color: '#b21e23', icon: 'golf' },
+  { id: Track.Tennis, name: 'Tennis', color: '#d12026', icon: 'tennis' },
+  { id: Track.Racing, name: 'Racing', color: '#b21e23', icon: 'car-fast' },
 ];
 
 export interface Speaker {

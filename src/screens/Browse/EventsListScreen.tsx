@@ -35,8 +35,8 @@ const EventsListScreen: React.FC = () => {
           <CardDescription className="text-gray-100 text-2xl mb-6 font-bold opacity-90">
             You Save 10%.
           </CardDescription>
-          <Button size="lg" className="w-full bg-white active:bg-gray-200 rounded-full h-14 shadow-xl border-b-4 border-gray-300">
-            <Text className="text-black font-extrabold text-lg">Start Saving</Text>
+          <Button size="lg" className="w-full bg-primary active:bg-secondary rounded-full h-14 shadow-xl">
+            <Text className="text-primary-foreground font-extrabold text-lg">Start Saving</Text>
           </Button>
         </LinearGradient>
       </ImageBackground>
@@ -72,7 +72,7 @@ const EventsListScreen: React.FC = () => {
         </View>
       </CardContent>
 
-      <CardFooter className="p-4 bg-muted/30 border-t border-border/50 flex-row justify-between items-center backdrop-blur-sm">
+      <CardFooter className="p-4 bg-muted/50 border-t border-border/50 flex-row justify-between items-center">
         <View>
           <Text className="text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-0.5">Starting at</Text>
           <View className="flex-row items-baseline">
@@ -96,13 +96,13 @@ const EventsListScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-background">
       {/* Floating Glass Header */}
-      <View className="absolute top-0 left-0 right-0 z-50 px-4 pt-12 pb-4 bg-background/60 backdrop-blur-2xl border-b border-white/20">
-        <View className="flex-row items-center bg-white/50 border border-white/40 rounded-full h-12 px-4 shadow-sm">
-          <Ionicons name="search" size={20} color="#64748b" />
+      <View className="absolute top-0 left-0 right-0 z-50 px-4 pt-12 pb-4 bg-card/95 border-b border-border/30">
+        <View className="flex-row items-center bg-muted border border-border rounded-full h-12 px-4">
+          <Ionicons name="search" size={20} color="#9b9a9a" />
           <TextInput
-            placeholder="Search events, teams..." className="flex-1 ml-3 text-base font-semibold text-foreground h-full" placeholderTextColor="#94a3b8" onChangeText={(text) => setFilters({ searchQuery: text })} />
-          <View className="w-8 h-8 rounded-full bg-gray-200 items-center justify-center">
-            <Text className="text-xs font-bold text-gray-600">J</Text>
+            placeholder="Search events, teams..." className="flex-1 ml-3 text-base font-semibold text-foreground h-full" placeholderTextColor="#9b9a9a" onChangeText={(text) => setFilters({ searchQuery: text })} />
+          <View className="w-8 h-8 rounded-full bg-primary items-center justify-center">
+            <Text className="text-xs font-bold text-primary-foreground">J</Text>
           </View>
         </View>
       </View>

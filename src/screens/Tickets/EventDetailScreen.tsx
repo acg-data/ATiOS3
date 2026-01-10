@@ -80,7 +80,7 @@ const EventDetailScreen: React.FC = () => {
 
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        className="absolute top-12 left-4 w-10 h-10 bg-black/30 backdrop-blur-md rounded-full items-center justify-center border border-white/10"
+                        className="absolute top-12 left-4 w-10 h-10 bg-card/90 rounded-full items-center justify-center border border-border/30"
                     >
                         <Ionicons name="arrow-back" size={24} color="white" />
                     </TouchableOpacity>
@@ -110,19 +110,19 @@ const EventDetailScreen: React.FC = () => {
                         <Text className="text-sm font-bold">Quantity</Text>
                         <Text className="text-xs text-muted-foreground">{quantity} Seats Together</Text>
                     </View>
-                    <View className="flex-row items-center bg-white rounded-full border border-border shadow-sm">
+                    <View className="flex-row items-center bg-muted rounded-full border border-border">
                         <TouchableOpacity
                             onPress={() => setQuantity(Math.max(1, quantity - 1))}
                             className="w-10 h-10 items-center justify-center"
                         >
-                            <Ionicons name="remove" size={20} color={quantity > 1 ? "#000" : "#ccc"} />
+                            <Ionicons name="remove" size={20} color={quantity > 1 ? "#fff" : "#4a4a4a"} />
                         </TouchableOpacity>
                         <Text className="w-8 text-center font-bold text-lg">{quantity}</Text>
                         <TouchableOpacity
                             onPress={() => setQuantity(Math.min(10, quantity + 1))}
                             className="w-10 h-10 items-center justify-center"
                         >
-                            <Ionicons name="add" size={20} color="#000" />
+                            <Ionicons name="add" size={20} color="#fff" />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -142,8 +142,8 @@ const EventDetailScreen: React.FC = () => {
                             onPress={() => setSelectedTicketId(t.id)}
                             activeOpacity={0.8}
                             className={`mb-4 rounded-[32px] p-5 border shadow-sm flex-row justify-between items-center ${selectedTicketId === t.id
-                                    ? 'bg-primary border-primary shadow-primary/20'
-                                    : 'bg-card border-border/50'
+                                ? 'bg-primary border-primary shadow-primary/20'
+                                : 'bg-card border-border/50'
                                 }`}
                         >
                             <View className="flex-1">
@@ -182,7 +182,7 @@ const EventDetailScreen: React.FC = () => {
             </ScrollView>
 
             {/* Sticky Bottom Bar */}
-            <View className="absolute bottom-0 left-0 right-0 p-6 bg-background/80 backdrop-blur-2xl border-t border-border/10">
+            <View className="absolute bottom-0 left-0 right-0 p-6 bg-card/95 border-t border-border/30">
                 <View className="flex-row justify-between items-center mb-4 px-2">
                     <View>
                         <Text className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Total Amount</Text>

@@ -1,41 +1,43 @@
 export const COLORS = {
-  // Primary Ace brand colors
-  aceRed: '#DD0000',        // Primary Logo, Login button
-  aceBlue: '#3862FA',       // Top banner, secondary accents
-  white: '#FFFFFF',         // Backgrounds
-  black: '#000000',         // Primary text, logo outline
-  
-  // Semantic mappings
-  primary: '#3862FA',       // Ace Blue
-  primaryLight: '#E8EDFE',  // Light blue for backgrounds
-  secondary: '#DD0000',     // Ace Red
-  background: '#FFFFFF',
-  surface: '#F8F8F8',
-  text: '#000000',
-  textSecondary: '#666666',
-  textDisabled: '#9E9E9E',
-  divider: '#E0E0E0',
-  error: '#D32F2F',
-  success: '#388E3C',
-  warning: '#FFA000',
-  
-  // Track colors - using Ace brand palette
-  mlb: '#3862FA',
-  nhl: '#DD0000',
-  nba: '#3862FA',
-  nfl: '#DD0000',
-  ncaa: '#3862FA',
-  concerts: '#DD0000',
-  theater: '#3862FA',
-  comedy: '#DD0000',
-  festivals: '#3862FA',
-  wrestling: '#DD0000',
-  mma: '#3862FA',
-  ufc: '#DD0000',
-  soccer: '#3862FA',
-  golf: '#DD0000',
-  tennis: '#3862FA',
-  racing: '#DD0000'
+  // Ace Ticket Brand Colors (Dark Theme)
+  aceRed: '#d12026',        // Primary brand red
+  aceDeepRed: '#b21e23',    // Deep red for accents
+  white: '#FFFFFF',         // Light text on dark
+  black: '#000000',         // Dark backgrounds
+  charcoal: '#2b2829',      // Card/surface backgrounds
+  gray: '#9b9a9a',          // Muted text
+
+  // Semantic mappings - Dark Theme First
+  primary: '#d12026',       // Ace Red as primary
+  primaryLight: '#3d1f20',  // Dark red tint for backgrounds
+  secondary: '#b21e23',     // Deep Red
+  background: '#000000',    // Pure black background
+  surface: '#2b2829',       // Charcoal surfaces
+  text: '#FFFFFF',          // White text
+  textSecondary: '#9b9a9a', // Muted gray
+  textDisabled: '#4a4a4a',  // Darker disabled text
+  divider: '#3a3a3a',       // Subtle dark dividers
+  error: '#d12026',         // Using brand red for errors
+  success: '#22c55e',       // Green for success
+  warning: '#f59e0b',       // Amber for warnings
+
+  // Track colors - alternating reds and charcoals
+  mlb: '#d12026',
+  nhl: '#b21e23',
+  nba: '#d12026',
+  nfl: '#b21e23',
+  ncaa: '#d12026',
+  concerts: '#b21e23',
+  theater: '#d12026',
+  comedy: '#b21e23',
+  festivals: '#d12026',
+  wrestling: '#b21e23',
+  mma: '#d12026',
+  ufc: '#b21e23',
+  soccer: '#d12026',
+  golf: '#b21e23',
+  tennis: '#d12026',
+  racing: '#b21e23'
 };
 
 export const SPACING = {
@@ -78,38 +80,38 @@ export const SHADOWS = {
   small: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08, // Softer
+    shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 2
   },
   medium: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 }, // Deeper offset
-    shadowOpacity: 0.12, // Softer opacity
-    shadowRadius: 12, // Larger radius for "float"
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
     elevation: 5
   },
   large: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 12 },
-    shadowOpacity: 0.15,
+    shadowOpacity: 0.5,
     shadowRadius: 24,
     elevation: 10
   },
-  // New "Premium" glow effect
+  // Ace Red glow effect for primary buttons/cards
   glow: {
-    shadowColor: '#3862FA',
+    shadowColor: '#d12026',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.4,
     shadowRadius: 12,
     elevation: 8
   }
 };
 
 export const GRADIENTS = {
-  primary: ['#3862FA', '#5C80FF'] as const,
-  dark: ['#1A1A1A', '#333333'] as const,
-  surface: ['#FFFFFF', '#F8F9FE'] as const,
+  primary: ['#d12026', '#b21e23'] as const,
+  dark: ['#2b2829', '#000000'] as const,
+  surface: ['#2b2829', '#1a1a1a'] as const,
 };
 
 export const API_CONFIG = {

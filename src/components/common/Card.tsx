@@ -14,11 +14,11 @@ export const Card: React.FC<CardProps> = ({
   style,
   ...props
 }) => {
-  const baseClasses = "rounded-xl bg-white";
+  const baseClasses = "rounded-xl bg-card";
 
   const variantClasses = {
-    elevated: "shadow-md",
-    outlined: "border border-gray-200",
+    elevated: "shadow-lg",
+    outlined: "border border-border",
     flat: "",
   };
 

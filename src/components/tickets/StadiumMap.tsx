@@ -53,8 +53,8 @@ const StadiumMap: React.FC<StadiumMapProps> = ({ onSectionSelect, selectedSectio
                         key={section.id}
                         onPress={() => handlePress(section.id)}
                         className={`px-3 py-1 rounded-full border ${selectedSection === section.id
-                                ? 'bg-primary border-primary'
-                                : 'bg-white border-border'
+                            ? 'bg-primary border-primary'
+                            : 'bg-card border-border'
                             }`}
                     >
                         <Text className={`text-[10px] font-bold ${selectedSection === section.id ? 'text-primary-foreground' : 'text-muted-foreground'
